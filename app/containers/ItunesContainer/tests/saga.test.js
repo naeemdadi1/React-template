@@ -13,4 +13,8 @@ describe('ItunesContainer saga tests', () => {
   it('should start task to watch for DEFAULT_ACTION action', () => {
     expect(generator.next().value).toEqual(takeLatest(itunesContainerTypes.DEFAULT_ACTION, defaultFunction));
   });
+
+  it('should ensure that default function is dispatched when the API call succeeds', () => {
+    expect(defaultFunction().next().value).toEqual(undefined);
+  });
 });

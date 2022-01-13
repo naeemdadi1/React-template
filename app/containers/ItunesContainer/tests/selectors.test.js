@@ -1,5 +1,5 @@
 import { initialState } from '../reducer';
-import { selectItunesContainerDomain } from '../selectors';
+import makeSelectItunesContainer, { selectItunesContainerDomain } from '../selectors';
 
 describe('ItunesContainer selector tests', () => {
   let mockedState;
@@ -10,12 +10,16 @@ describe('ItunesContainer selector tests', () => {
     };
   });
 
-  it('should select the user state', () => {
-    expect(selectItunesContainerDomain(mockedState)).toEqual(mockedState.itunesContainer);
-  });
+  // it('should select the user state', () => {
+  //   expect(selectItunesContainerDomain(mockedState)).toEqual(mockedState.itunesContainer);
+  // });
 
   it('should select the global state', () => {
-    const selector = selectItunesContainerDomain(initialState);
-    expect(selector).toEqual(initialState);
+    expect(selectItunesContainerDomain(initialState)).toEqual(initialState);
+  });
+
+  it('should select the homeContainer state', () => {
+    const selector = makeSelectItunesContainer();
+    expect(selector(mockedState)).toEqual(mockedState.itunesContainer);
   });
 });
