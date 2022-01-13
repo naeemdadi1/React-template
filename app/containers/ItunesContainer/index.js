@@ -22,19 +22,19 @@ export function ItunesContainer() {
   );
 }
 
-ItunesContainer.propTypes = {};
+// ItunesContainer.propTypes = {};
 
 const mapStateToProps = createStructuredSelector({
   itunesContainer: makeSelectItunesContainer()
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch
-  };
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     dispatch
+//   };
+// }
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(mapStateToProps);
 
 export default compose(withConnect, injectSaga({ key: 'itunesContainer', saga }))(ItunesContainer);
 
