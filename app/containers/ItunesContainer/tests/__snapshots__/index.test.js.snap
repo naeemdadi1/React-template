@@ -4,7 +4,9 @@ exports[`<ItunesContainer /> container tests should render and match the snapsho
 <body>
   <div>
     <div>
-      ItunesContainer
+      <input
+        type="text"
+      />
     </div>
   </div>
 </body>
