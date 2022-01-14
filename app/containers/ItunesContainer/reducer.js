@@ -13,10 +13,9 @@ export const { Types: itunesContainerTypes, Creators: itunesContainerCreators } 
   requestGetItunesData: ['ituneName'],
   successGetItunesData: ['data'],
   failureGetItunesData: ['error'],
-  clearItunesData: {}
+  clearItunesData: null
 });
 
-/* eslint-disable default-case, no-param-reassign */
 export const itunesContainerReducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
