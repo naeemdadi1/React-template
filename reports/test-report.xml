@@ -1,0 +1,193 @@
+<testExecutions version="1">
+<file path="app/components/RepoCard/tests/index.test.js">
+<testCase name="&lt;RepoCard /&gt; should render and match the snapshot" duration="151" />
+<testCase name="&lt;RepoCard /&gt; should contain 1 RepoCard component" duration="16" />
+<testCase name="&lt;RepoCard /&gt; should render the repository details inside the card" duration="43" />
+<testCase name="&lt;RepoCard /&gt; should render the repository unavailable messages in case any props are unavailable or have falsy values" duration="11" />
+</file>
+<file path="app/components/Header/tests/index.test.js">
+<testCase name="&lt;Header /&gt; should render and match the snapshot" duration="137" />
+<testCase name="&lt;Header /&gt; should contain logo" duration="62" />
+</file>
+<file path="app/containers/ItunesContainer/tests/selectors.test.js">
+<testCase name="ItunesContainer selector tests should select the global state" duration="5" />
+<testCase name="ItunesContainer selector tests should select the homeContainer state" duration="1" />
+</file>
+<file path="app/containers/HomeContainer/tests/index.test.js">
+<testCase name="&lt;HomeContainer /&gt; tests should render and match the snapshot" duration="363" />
+<testCase name="&lt;HomeContainer /&gt; tests should call dispatchClearGithubRepos on empty change" duration="1228" />
+<testCase name="&lt;HomeContainer /&gt; tests should call dispatchGithubRepos on change and after enter" duration="526" />
+<testCase name="&lt;HomeContainer /&gt; tests should call dispatchGithubRepos on submit" duration="519" />
+<testCase name="&lt;HomeContainer /&gt; tests should  dispatchGithubRepos on update on mount if repoName is already persisted" duration="514" />
+<testCase name="&lt;HomeContainer /&gt; tests should validate mapDispatchToProps actions" duration="502" />
+<testCase name="&lt;HomeContainer /&gt; tests should render default error message when search goes wrong" duration="19" />
+<testCase name="&lt;HomeContainer /&gt; tests should render the default message when searchBox is empty and reposError is null" duration="24" />
+<testCase name="&lt;HomeContainer /&gt; tests should render the data when loading becomes false" duration="33" />
+<testCase name="&lt;HomeContainer /&gt; tests should render exact number of RepoCards as per totalCount in result" duration="50" />
+<testCase name="&lt;HomeContainer /&gt; tests should redirect to /stories when clicked on Clickable component" duration="76" />
+<testCase name="&lt;HomeContainer /&gt; tests should render Skeleton Comp when &quot;loading&quot; is true" duration="539" />
+</file>
+<file path="app/containers/ItunesContainer/tests/saga.test.js">
+<testCase name="ItunesContainer saga tests should start task to watch for DEFAULT_ACTION action" duration="25" />
+<testCase name="ItunesContainer saga tests should ensure that default function is dispatched when the API call succeeds" duration="2" />
+</file>
+<file path="app/containers/App/tests/index.test.js">
+<testCase name="&lt;App /&gt; container tests should render and match the snapshot" duration="422" />
+</file>
+<file path="app/components/ProtectedRoute/tests/index.test.js">
+<testCase name="&lt;ProtectedRoute /&gt; should render and match the snapshot" duration="387" />
+<testCase name="&lt;ProtectedRoute /&gt; should  render the component if user logged in and access protected route" duration="124" />
+<testCase name="&lt;ProtectedRoute /&gt; should not render component if user is not logged in" duration="35" />
+<testCase name="&lt;ProtectedRoute /&gt; should render component , not logged in, unprotected route" duration="52" />
+<testCase name="&lt;ProtectedRoute /&gt; should redirect to the dashboard if logged in and accessing login page(unprotected)" duration="90" />
+</file>
+<file path="app/containers/HomeContainer/tests/saga.test.js">
+<testCase name="HomeContainer saga tests should start task to watch for REQUEST_GET_GITHUB_REPOS action" duration="6" />
+<testCase name="HomeContainer saga tests should ensure that the action FAILURE_GET_GITHUB_REPOS is dispatched when the api call fails" duration="31" />
+<testCase name="HomeContainer saga tests should ensure that the action SUCCESS_GET_GITHUB_REPOS is dispatched when the api call succeeds" duration="1" />
+</file>
+<file path="app/containers/ItunesContainer/tests/index.test.js">
+<testCase name="&lt;ItunesContainer /&gt; container tests should render and match the snapshot" duration="198" />
+</file>
+<file path="app/tests/store.test.js">
+<testCase name="configureStore tests should contain an object for reducers" duration="3" />
+<testCase name="configureStore tests should contain an object for sagas" duration="0" />
+<testCase name="configureStore tests should contain a hook for `sagaMiddleware.run`" duration="1" />
+<testCase name="configureStore params should call window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__" duration="2" />
+</file>
+<file path="app/components/Clickable/tests/index.test.js">
+<testCase name="&lt;Clickable /&gt; component tests should render and match the snapshot" duration="138" />
+<testCase name="&lt;Clickable /&gt; component tests should contain 1 Clickable component" duration="22" />
+<testCase name="&lt;Clickable /&gt; component tests should contain render the text according to the textId" duration="10" />
+<testCase name="&lt;Clickable /&gt; component tests should call the prop onClick when the clickable component is clicked" duration="37" />
+</file>
+<file path="app/components/T/tests/index.test.js">
+<testCase name="&lt;T /&gt; component tests should render and match the snapshot" duration="92" />
+<testCase name="&lt;T /&gt; component tests should contain 1 T component" duration="9" />
+<testCase name="&lt;T /&gt; component tests should contain render the text according to the id" duration="73" />
+<testCase name="&lt;T /&gt; component tests should have a margin-bottom of 5px when we pass marginBottom as 5" duration="107" />
+</file>
+<file path="app/components/For/tests/index.test.js">
+<testCase name="&lt;For /&gt; should render the number of elements passed as props" duration="155" />
+<testCase name="&lt;For /&gt; should render the number of elements passed as props and the parent should be a span" duration="27" />
+<testCase name="&lt;For /&gt; should render the number of elements passed as props and should not add another layer of dom nesting" duration="176" />
+<testCase name="&lt;For /&gt; should not render anything when items is not passed" duration="94" />
+</file>
+<file path="app/services/tests/repoApi.test.js">
+<testCase name="RepoApi tests should make the api call to &quot;/search/repositories?q=&quot;" duration="27" />
+</file>
+<file path="app/components/IntlGlobalProvider/tests/index.test.js">
+<testCase name="Test for IntlGlobalProvider should return children" duration="112" />
+<testCase name="Test for setIntl method should set the value of intl and translate should call formatMessage" duration="3" />
+<testCase name="Test for translate method should set the value of intl and translate should call formatMessage" duration="2" />
+</file>
+<file path="app/utils/tests/checkStore.test.js">
+<testCase name="checkStore should not throw if passed valid store shape" duration="4" />
+<testCase name="checkStore should throw if passed invalid store shape" duration="35" />
+</file>
+<file path="app/containers/LanguageProvider/tests/index.test.js">
+<testCase name="&lt;LanguageProvider /&gt; tests should render its children" duration="35" />
+<testCase name="&lt;ConnectedLanguageProvider /&gt; tests should render the default language messages" duration="75" />
+</file>
+<file path="app/containers/LanguageProvider/tests/reducer.test.js">
+<testCase name="Tests for LanguageProvider actions returns the initial state" duration="4" />
+<testCase name="Tests for LanguageProvider actions changes the locale" duration="2" />
+</file>
+<file path="app/utils/tests/index.test.js">
+<testCase name="Tests for getCurrentRouteDetails method should return null if pathname is not available" duration="4" />
+<testCase name="Tests for getCurrentRouteDetails method should return the details of the route" duration="2" />
+<testCase name="Tests for getCurrentRouteDetails method should return null of the route if pathname is not in routeConstants" duration="0" />
+<testCase name="Tests for isLocal method should return true if process.env.IS_LOCAL is true" duration="16" />
+<testCase name="Tests for isLocal method should return false if when process.env.IS_LOCAL is not present" duration="15" />
+<testCase name="Tests for isLocal method should return false if process.env.IS_LOCAL has exceptional value" duration="1" />
+<testCase name="Tests for mapKeysDeep method should return something objet" duration="1" />
+<testCase name="Tests for mapKeysDeep method should operate array accordingly" duration="0" />
+<testCase name="Tests for mapKeysDeep method should return the passed value if its not an array or object" duration="1" />
+</file>
+<file path="app/containers/HomeContainer/tests/selectors.test.js">
+<testCase name="HomeContainer selector tests should select the homeContainer state" duration="14" />
+<testCase name="HomeContainer selector tests should select the repoName" duration="2" />
+<testCase name="HomeContainer selector tests should select reposData" duration="1" />
+<testCase name="HomeContainer selector tests should select the reposError" duration="1" />
+<testCase name="HomeContainer selector tests should select the global state" duration="1" />
+</file>
+<file path="app/containers/NotFoundPage/tests/index.test.js">
+<testCase name="&lt;NotFoundPage /&gt; tests should render and match the snapshot" duration="79" />
+</file>
+<file path="app/containers/LanguageProvider/tests/selectors.test.js">
+<testCase name="Tests for LanguageProvider selectors should select the global state" duration="3" />
+<testCase name="Tests for LanguageProvider selectors should select the global state" duration="1" />
+<testCase name="Tests for LanguageProvider selectors should return the selector" duration="0" />
+</file>
+<file path="app/themes/tests/colors.test.js">
+<testCase name="colors should have the correct font-size" duration="3" />
+</file>
+<file path="app/utils/tests/getIntl.test.js">
+<testCase name="Tests for getIntl method should return the output of createIntl() method with appropriate values" duration="16" />
+</file>
+<file path="app/containers/HomeContainer/tests/reducer.test.js">
+<testCase name="HomContainer reducer tests should return the initial state" duration="5" />
+<testCase name="HomContainer reducer tests should return the initial state when an action of type FETCH_USER is dispatched" duration="2" />
+<testCase name="HomContainer reducer tests should ensure that the user data is present and userLoading = false when FETCH_USER_SUCCESS is dispatched" duration="1" />
+<testCase name="HomContainer reducer tests should ensure that the userErrorMessage has some data and userLoading = false when FETCH_USER_FAILURE is dispatched" duration="1" />
+<testCase name="HomContainer reducer tests should return the initial state when CLEAR_GITHUB_REPOS is dispatched" duration="1" />
+</file>
+<file path="app/containers/ItunesContainer/tests/reducer.test.js">
+<testCase name="ItunesContainer reducer tests should return the initial state" duration="5" />
+<testCase name="ItunesContainer reducer tests should return the update the state when an action of type DEFAULT is dispatched" duration="1" />
+</file>
+<file path="app/utils/tests/history.test.js">
+<testCase name="Tests for baseUrl method in history should the path /react-template in production" duration="7" />
+<testCase name="Tests for baseUrl method in history should the path /react-template in development or test mode" duration="1" />
+</file>
+<file path="app/containers/App/tests/selectors.test.js">
+<testCase name="App selector tests should select the location" duration="5" />
+</file>
+<file path="app/themes/tests/styles.test.js">
+<testCase name="Tests for styles should return height stylings with passed value" duration="15" />
+<testCase name="Tests for styles should return the z-index styling according to the value passed" duration="1" />
+<testCase name="Tests for styles should return the textEllipsis styling according to the width passed" duration="1" />
+<testCase name="Tests for styles should return primaryBackgroundColor styling" duration="1" />
+<testCase name="Tests for styles should return the boxShadow stylings according to values passed" duration="1" />
+<testCase name="Tests for styles should return the borderRaduis stylings according to the radius value and types passed" duration="1" />
+<testCase name="Tests for styles should return the borderWithRadius stylings according to values passed" duration="1" />
+<testCase name="Tests for styles should return borderRadiusBottom stylings according to the bottomRadius value passed" duration="1" />
+<testCase name="Tests for styles should return borderRadiusTop stylings according to the topRadius value passed" duration="1" />
+<testCase name="Tests for styles should return the margin-top Styling according to the top distance value provided" duration="0" />
+<testCase name="Tests for styles should return the margin-bottom Styling according to the bottom distance value provided" duration="1" />
+<testCase name="Tests for styles should return the margin-left Styling according to the left distance value provided" duration="1" />
+<testCase name="Tests for styles should return the margin-left Styling according to the left distance value provided" duration="0" />
+<testCase name="Tests for styles should return the vertical margin styilngs according to the verticalMargin value passed" duration="0" />
+<testCase name="Tests for styles should return the horizontal margin styilngs according to the horizontalMargin value passed" duration="0" />
+<testCase name="Tests for styles should return the row stylings" duration="1" />
+<testCase name="Tests for styles should return the rowCenter stylings" duration="2" />
+<testCase name="Tests for styles should return the stylings of column" duration="1" />
+<testCase name="Tests for styles should return the unequalColumns stylings" duration="1" />
+<testCase name="Tests for styles should return default height stylings" duration="1" />
+<testCase name="Tests for styles should return default marginTop stylings" duration="1" />
+<testCase name="Tests for styles should return default marginLeft stylings" duration="0" />
+<testCase name="Tests for styles should return default marginRight stylings" duration="0" />
+<testCase name="Tests for styles should return default marginBottom stylings" duration="1" />
+<testCase name="Tests for styles should return default verticalMargin stylings" duration="0" />
+<testCase name="Tests for styles should return default horizontalMargin stylings" duration="1" />
+<testCase name="Tests for styles should return default borderRadiusBottom stylings" duration="0" />
+<testCase name="Tests for styles should return default borderRadiusTop stylings" duration="0" />
+<testCase name="Tests for styles should return default borderWithRadius stylings" duration="1" />
+<testCase name="Tests for styles should return default boxShadow stylings" duration="0" />
+<testCase name="Tests for styles should return default z-index stylings" duration="1" />
+<testCase name="Tests for styles should return default textEllipsis stylings" duration="1" />
+<testCase name="Tests for ConfigureFlex method should return the css styling according to the values passed" duration="2" />
+<testCase name="Tests for ConfigureFlex method should return the default css styling accordingly" duration="0" />
+</file>
+<file path="app/themes/tests/fonts.test.js">
+<testCase name="fonts should have the correct font-size" duration="36" />
+<testCase name="fonts should have the correct font-weight" duration="4" />
+<testCase name="fonts should have the correct font-weight and font-size" duration="19" />
+<testCase name="Tests for dynamicFontSize method should return dynamic font stylings along with required media queries" duration="15" />
+<testCase name="Tests for dynamicFontSize method should return  default dynamic font stylings along with required media queries" duration="4" />
+</file>
+<file path="app/tests/i18n.test.js">
+<testCase name="formatTranslationMessages tests should build only defaults when DEFAULT_LOCALE" duration="26" />
+<testCase name="formatTranslationMessages tests should combine default locale and current locale when not DEFAULT_LOCALE" duration="1" />
+</file>
+</testExecutions>
