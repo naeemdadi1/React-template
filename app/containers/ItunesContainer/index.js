@@ -5,19 +5,28 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { injectIntl, FormattedMessage as T } from 'react-intl';
+import { injectIntl } from 'react-intl';
+import { Input } from 'antd';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { injectSaga } from 'redux-injectors';
 import makeSelectItunesContainer from './selectors';
 import saga from './saga';
+import { debounce } from 'lodash';
+
+const { Search } = Input;
 
 export function ItunesContainer() {
+  const handleOnChange = (ituneName) => {
+    // fetch itune details
+  };
+
+  const debouncedHandleOnChange = debounce(handleOnChange, 200);
+
   return (
     <div>
-      <T id={'ItunesContainer'} />
+      <Search onChange={(e) => debouncedHandleOnChange(e.target.value)} type="text" />
     </div>
   );
 }
@@ -36,6 +45,6 @@ const mapStateToProps = createStructuredSelector({
 
 const withConnect = connect(mapStateToProps);
 
-export default compose(withConnect, injectSaga({ key: 'itunesContainer', saga }))(ItunesContainer);
+export default compose(injectIntl, withConnect, injectSaga({ key: 'itunesContainer', saga }))(ItunesContainer);
 
 export const ItunesContainerTest = compose(injectIntl)(ItunesContainer);

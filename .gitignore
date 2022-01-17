@@ -14,3 +14,4 @@ reports/test-report.xml
 .DS_Store
 npm-debug.log
 .idea
+reports/test-report.xml
