@@ -7,12 +7,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
+import { Input } from 'antd';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { injectSaga } from 'redux-injectors';
 import makeSelectItunesContainer from './selectors';
 import saga from './saga';
 import { debounce } from 'lodash';
+
+const { Search } = Input;
 
 export function ItunesContainer() {
   const handleOnChange = (ituneName) => {
@@ -23,7 +26,7 @@ export function ItunesContainer() {
 
   return (
     <div>
-      <input onChange={(e) => debouncedHandleOnChange(e.target.value)} type="text" />
+      <Search onChange={(e) => debouncedHandleOnChange(e.target.value)} type="text" />
     </div>
   );
 }
