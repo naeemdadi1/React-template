@@ -11,10 +11,13 @@ import { injectIntl } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { injectSaga } from 'redux-injectors';
+import { Input } from 'antd';
 import makeSelectItunesContainer from './selectors';
 import saga from './saga';
 import { itunesContainerCreators } from './reducer';
 import { debounce, isEmpty } from 'lodash';
+
+const { Search } = Input;
 
 export function ItunesContainer({ dispatchItunesData, dispatchClearItunesData }) {
   const handleOnChange = (ituneName) => {
@@ -29,7 +32,7 @@ export function ItunesContainer({ dispatchItunesData, dispatchClearItunesData })
 
   return (
     <div>
-      <input data-testid="search-bar" onChange={(e) => debouncedHandleOnChange(e.target.value)} type="text" />
+      <Search data-testid="search-bar" onChange={(e) => debouncedHandleOnChange(e.target.value)} type="text" />
     </div>
   );
 }
