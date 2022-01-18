@@ -13,5 +13,9 @@
   "repo_full_name_unavailable": "Repository full name unavaiable",
   "repository_stars": "Repository stars: {stars}",
   "repo_stars_unavailable": "Repository stars are unavaiable",
-  "wednesday_solutions": "Wednesday Solutions"
+  "wednesday_solutions": "Wednesday Solutions",
+  "artist_name": "Artist Name: {artistName}",
+  "collection_price": "Collection Price: {collectionPrice} {currency}",
+  "country": "Country: {country}",
+  "collection_name": "Collection Name: {collectionName}"
 }
