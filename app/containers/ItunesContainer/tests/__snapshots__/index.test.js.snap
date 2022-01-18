@@ -3,7 +3,9 @@
 exports[`<ItunesContainer /> container tests should render and match the snapshot 1`] = `
 <body>
   <div>
-    <div>
+    <div
+      class="ItunesContainer__Container-rg528l-1 lofeea"
+    >
       <span
         class="ant-input-group-wrapper ant-input-search"
       >

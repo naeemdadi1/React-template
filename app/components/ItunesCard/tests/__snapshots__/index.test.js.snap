@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ItunesCard /> should render and match the snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="ant-card ant-card-bordered ant-card-hoverable ItunesCard__CustomCard-sijrgi-0 kYhVSA"
+      data-testid="itune-card"
+    >
+      <div
+        class="ant-card-head"
+      >
+        <div
+          class="ant-card-head-wrapper"
+        >
+          <div
+            class="ant-card-head-title"
+          >
+            Doin' What She Likes
+          </div>
+        </div>
+      </div>
+      <div
+        class="ant-card-body"
+      >
+        <p
+          class="T__StyledText-gjlic1-0 kYcyRq"
+          data-testid="artist_name"
+        >
+          Artist Name: Blake Shelton
+        </p>
+        <p
+          class="T__StyledText-gjlic1-0 kYcyRq"
+          data-testid="collection_price"
+        >
+          Collection Price: 10.99 USD
+        </p>
+        <p
+          class="T__StyledText-gjlic1-0 kYcyRq"
+          data-testid="country"
+        >
+          Country: USA
+        </p>
+        <p
+          class="T__StyledText-gjlic1-0 kYcyRq"
+          data-testid="collection_name"
+        >
+          Collection Name: Based On a True S...
+        </p>
+        <audio
+          class="ItunesCard__CustomAudio-sijrgi-1 hTstUt"
+          controls=""
+          data-testid="play_event"
+        >
+          <source
+            src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/98/70/8c/98708cde-2365-38e9-7eab-76786d3ef1a9/mzaf_12146965378941562534.plus.aac.p.m4a"
+            type="audio/mpeg"
+          />
+        </audio>
+      </div>
+      <ul
+        class="ant-card-actions"
+      >
+        <li
+          style="width: 33.333333333333336%;"
+        >
+          <span>
+            <a
+              class="ant-btn ant-btn-link ant-btn-icon-only"
+              href="https://music.apple.com/us/artist/blake-shelton/189204?uo=4"
+              target="_blank"
+            >
+              <span
+                aria-label="link"
+                class="anticon anticon-link"
+                role="img"
+              >
+                <svg
+                  aria-hidden="true"
+                  data-icon="link"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
+                >
+                  <path
+                    d="M574 665.4a8.03 8.03 0 00-11.3 0L446.5 781.6c-53.8 53.8-144.6 59.5-204 0-59.5-59.5-53.8-150.2 0-204l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3l-39.8-39.8a8.03 8.03 0 00-11.3 0L191.4 526.5c-84.6 84.6-84.6 221.5 0 306s221.5 84.6 306 0l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3L574 665.4zm258.6-474c-84.6-84.6-221.5-84.6-306 0L410.3 307.6a8.03 8.03 0 000 11.3l39.7 39.7c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c53.8-53.8 144.6-59.5 204 0 59.5 59.5 53.8 150.2 0 204L665.3 562.6a8.03 8.03 0 000 11.3l39.8 39.8c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c84.5-84.6 84.5-221.5 0-306.1zM610.1 372.3a8.03 8.03 0 00-11.3 0L372.3 598.7a8.03 8.03 0 000 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l226.4-226.4c3.1-3.1 3.1-8.2 0-11.3l-39.5-39.6z"
+                  />
+                </svg>
+              </span>
+            </a>
+          </span>
+        </li>
+        <li
+          style="width: 33.333333333333336%;"
+        >
+          <span>
+            <a
+              class="ant-btn ant-btn-link ant-btn-icon-only"
+              href="https://music.apple.com/us/album/doin-what-she-likes/606057263?i=606057326&uo=4"
+              target="_blank"
+            >
+              <span
+                aria-label="link"
+                class="anticon anticon-link"
+                role="img"
+              >
+                <svg
+                  aria-hidden="true"
+                  data-icon="link"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
+                >
+                  <path
+                    d="M574 665.4a8.03 8.03 0 00-11.3 0L446.5 781.6c-53.8 53.8-144.6 59.5-204 0-59.5-59.5-53.8-150.2 0-204l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3l-39.8-39.8a8.03 8.03 0 00-11.3 0L191.4 526.5c-84.6 84.6-84.6 221.5 0 306s221.5 84.6 306 0l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3L574 665.4zm258.6-474c-84.6-84.6-221.5-84.6-306 0L410.3 307.6a8.03 8.03 0 000 11.3l39.7 39.7c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c53.8-53.8 144.6-59.5 204 0 59.5 59.5 53.8 150.2 0 204L665.3 562.6a8.03 8.03 0 000 11.3l39.8 39.8c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c84.5-84.6 84.5-221.5 0-306.1zM610.1 372.3a8.03 8.03 0 00-11.3 0L372.3 598.7a8.03 8.03 0 000 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l226.4-226.4c3.1-3.1 3.1-8.2 0-11.3l-39.5-39.6z"
+                  />
+                </svg>
+              </span>
+            </a>
+          </span>
+        </li>
+        <li
+          style="width: 33.333333333333336%;"
+        >
+          <span>
+            <a
+              class="ant-btn ant-btn-link ant-btn-icon-only"
+              href="https://music.apple.com/us/album/doin-what-she-likes/606057263?i=606057326&uo=4"
+              target="_blank"
+            >
+              <span
+                aria-label="link"
+                class="anticon anticon-link"
+                role="img"
+              >
+                <svg
+                  aria-hidden="true"
+                  data-icon="link"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
+                >
+                  <path
+                    d="M574 665.4a8.03 8.03 0 00-11.3 0L446.5 781.6c-53.8 53.8-144.6 59.5-204 0-59.5-59.5-53.8-150.2 0-204l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3l-39.8-39.8a8.03 8.03 0 00-11.3 0L191.4 526.5c-84.6 84.6-84.6 221.5 0 306s221.5 84.6 306 0l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3L574 665.4zm258.6-474c-84.6-84.6-221.5-84.6-306 0L410.3 307.6a8.03 8.03 0 000 11.3l39.7 39.7c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c53.8-53.8 144.6-59.5 204 0 59.5 59.5 53.8 150.2 0 204L665.3 562.6a8.03 8.03 0 000 11.3l39.8 39.8c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c84.5-84.6 84.5-221.5 0-306.1zM610.1 372.3a8.03 8.03 0 00-11.3 0L372.3 598.7a8.03 8.03 0 000 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l226.4-226.4c3.1-3.1 3.1-8.2 0-11.3l-39.5-39.6z"
+                  />
+                </svg>
+              </span>
+            </a>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+`;
