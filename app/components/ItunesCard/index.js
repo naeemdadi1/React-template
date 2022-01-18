@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-// import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Card, Tooltip, Button } from 'antd';
 import styled from 'styled-components';
@@ -20,7 +19,6 @@ const CustomAudio = styled.audio`
 const ItunesCard = ({ onClickAction, itune }) => {
   const audioRef = useRef();
 
-  // const { artistName, currency, collectionName, collectionPrice, country } = itune;
   return (
     <CustomCard
       data-testid="itune-card"
