@@ -45,9 +45,6 @@ export function ItunesContainer({ dispatchItunesData, dispatchClearItunesData, i
     }
   }, [itunesData]);
 
-  //eslint-disable-next-line
-  console.log(itunesData, loading);
-
   useEffect(() => {
     if (ituneName && !itunesData?.results?.length) {
       dispatchItunesData(ituneName);
