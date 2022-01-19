@@ -12,12 +12,16 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { injectSaga } from 'redux-injectors';
 import { Input, Skeleton } from 'antd';
-import makeSelectItunesContainer, { selectItuneName, selectItunesData, selectItunesError } from './selectors';
-import saga from './saga';
-import { itunesContainerCreators } from './reducer';
 import { debounce, get, isEmpty } from 'lodash';
 import styled from 'styled-components';
+import saga from './saga';
 import ItunesCard from '@app/components/ItunesCard/index';
+import { itunesContainerCreators } from './reducer';
+import { selectItuneName, selectItunesData, selectItunesError } from './selectors';
+import For from '@app/components/For/index';
+import If from '@app/components/If/index';
+import { T } from '@app/components/T/index';
+import * as colors from '@app/themes/colors';
 
 const { Search } = Input;
 
@@ -32,6 +36,7 @@ const Container = styled.div`
     width: 100%;
     margin: 0 auto;
     padding: 1rem;
+    color: ${colors.error};
   }
 `;
 
@@ -39,11 +44,11 @@ export function ItunesContainer({ dispatchItunesData, dispatchClearItunesData, i
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const loaded = get(itunesData, 'items', null) || itunesError;
+    const loaded = get(itunesData, 'results', itunesError);
     if (loaded) {
       setLoading(false);
     }
-  }, [itunesData]);
+  }, [itunesData, itunesError]);
 
   useEffect(() => {
     if (ituneName && !itunesData?.results?.length) {
@@ -53,7 +58,7 @@ export function ItunesContainer({ dispatchItunesData, dispatchClearItunesData, i
   }, []);
 
   const handleOnChange = (ituneName) => {
-    if (!isEmpty(ituneName)) {
+    if (ituneName) {
       dispatchItunesData(ituneName);
       setLoading(true);
     } else {
@@ -64,10 +69,7 @@ export function ItunesContainer({ dispatchItunesData, dispatchClearItunesData, i
   const [currTrack, setCurrTrack] = useState();
 
   const onClickAction = (e, audioRef) => {
-    if (!isEmpty(currTrack)) {
-      if (currTrack === audioRef?.current) {
-        return;
-      }
+    if (!isEmpty(currTrack) && currTrack !== audioRef?.current) {
       currTrack.pause();
     }
     setCurrTrack(audioRef?.current);
@@ -75,6 +77,25 @@ export function ItunesContainer({ dispatchItunesData, dispatchClearItunesData, i
 
   const debouncedHandleOnChange = debounce(handleOnChange, 200);
 
+  const renderItunesData = () => (
+    <Skeleton loading={loading} active>
+      <For
+        of={itunesData?.results}
+        ParentComponent={FlexContainer}
+        renderItem={(item, index) => <ItunesCard key={index} itune={item} onClickAction={onClickAction} />}
+      />
+    </Skeleton>
+  );
+
+  const renderErrorState = () =>
+    !loading &&
+    itunesError && (
+      <Container>
+        <If condition={itunesError}>
+          <T data-testid="itunes-error-message" text={itunesError} />
+        </If>
+      </Container>
+    );
   return (
     <Container>
       <Search
@@ -84,13 +105,8 @@ export function ItunesContainer({ dispatchItunesData, dispatchClearItunesData, i
         onSearch={(searchTxt) => debouncedHandleOnChange(searchTxt)}
         type="text"
       />
-      <Skeleton loading={loading} active>
-        <FlexContainer>
-          {itunesData?.results?.map((itune, index) => (
-            <ItunesCard onClickAction={onClickAction} itune={itune} key={index} />
-          ))}
-        </FlexContainer>
-      </Skeleton>
+      {renderItunesData()}
+      {renderErrorState()}
     </Container>
   );
 }
@@ -102,7 +118,22 @@ ItunesContainer.propTypes = {
   padding: PropTypes.number,
   itunesData: PropTypes.shape({
     resultCount: PropTypes.number,
-    results: PropTypes.array
+    results: PropTypes.arrayOf(
+      PropTypes.shape({
+        artistName: PropTypes.string,
+        collectionName: PropTypes.string,
+        trackName: PropTypes.string,
+        artistViewUrl: PropTypes.string,
+        collectionViewUrl: PropTypes.string,
+        trackViewUrl: PropTypes.string,
+        previewUrl: PropTypes.string,
+        collectionPrice: PropTypes.number,
+        trackPrice: PropTypes.number,
+        country: PropTypes.string,
+        currency: PropTypes.string,
+        length: PropTypes.number
+      })
+    )
   }),
   ituneName: PropTypes.string,
   itunesError: PropTypes.string,
@@ -115,7 +146,6 @@ ItunesContainer.defaultProps = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  itunesContainer: makeSelectItunesContainer(),
   itunesData: selectItunesData(),
   itunesError: selectItunesError(),
   ituneName: selectItuneName()

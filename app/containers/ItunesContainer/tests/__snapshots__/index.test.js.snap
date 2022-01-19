@@ -4,7 +4,7 @@ exports[`<ItunesContainer /> container tests should render and match the snapsho
 <body>
   <div>
     <div
-      class="ItunesContainer__Container-rg528l-1 bkSmpG"
+      class="ItunesContainer__Container-rg528l-1 lofeea"
     >
       <span
         class="ant-input-group-wrapper ant-input-search"
@@ -48,9 +48,6 @@ exports[`<ItunesContainer /> container tests should render and match the snapsho
           </span>
         </span>
       </span>
-      <div
-        class="ItunesContainer__FlexContainer-rg528l-0 hMoeIj"
-      />
     </div>
   </div>
 </body>

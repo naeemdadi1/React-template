@@ -58,7 +58,7 @@ describe('<ItunesContainer /> container tests', () => {
     expect(clearItunesDataSpy).toBeCalled();
   });
 
-  it('should call dispatchItunesData on submit', async () => {
+  it('should call dispatchItunesData on onSearch submit', async () => {
     const ituneName = 'test';
     const { getByTestId } = renderProvider(<ItunesContainer dispatchItunesData={submitSpy} />);
     fireEvent.keyDown(getByTestId('search-bar'), { keyCode: 13, target: { value: ituneName } });
@@ -100,28 +100,28 @@ describe('<ItunesContainer /> container tests', () => {
 
   it('should render exact number of ItunesCards as per totalCount in result', () => {
     const resultCount = 3;
-    const itunesData = {
+    const mockedItunesData = {
       resultCount,
       results: [
         {
-          name: 'react-tempalte',
-          fullName: 'wednesday-solutions/react-template',
-          stargazersCount: 200
+          artistName: 'Blake Shelton',
+          trackName: "Doin' What She Likes",
+          trackPrice: 1.29
         },
         {
-          name: 'react',
-          fullName: 'wednesday-solutions/react',
-          stargazersCount: 100
+          artistName: 'kety',
+          trackName: 'test2',
+          trackPrice: 2.29
         },
         {
-          name: 'react-tempalte2',
-          fullName: 'wednesday-solutions/react-template2',
-          stargazersCount: 300
+          artistName: 'bob',
+          trackName: 'test3',
+          trackPrice: 1.99
         }
       ]
     };
     const { getAllByTestId } = renderProvider(
-      <ItunesContainer itunesData={itunesData} dispatchItunesData={submitSpy} />
+      <ItunesContainer itunesData={mockedItunesData} dispatchItunesData={submitSpy} />
     );
     expect(getAllByTestId('itune-card').length).toBe(resultCount);
   });
