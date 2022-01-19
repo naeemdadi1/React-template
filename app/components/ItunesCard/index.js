@@ -4,6 +4,7 @@ import { Card, Tooltip, Button } from 'antd';
 import styled from 'styled-components';
 import { T } from '../T/index';
 import { LinkOutlined } from '@ant-design/icons';
+import { truncate } from 'lodash';
 
 const CustomCard = styled(Card)`
   && {
@@ -39,7 +40,7 @@ const ItunesCard = ({ onClickAction, itune }) => {
       <T id="artist_name" values={{ artistName: itune?.artistName }} />
       <T id="collection_price" values={{ collectionPrice: itune?.collectionPrice, currency: itune?.currency }} />
       <T id="country" values={{ country: itune?.country }} />
-      <T id="collection_name" values={{ collectionName: itune?.collectionName }} />
+      <T id="collection_name" values={{ collectionName: truncate(itune?.collectionName, { length: 20 }) }} />
       <CustomAudio controls onPlay={(e) => onClickAction(e, audioRef)} ref={audioRef}>
         <source src={itune?.previewUrl} type="audio/mpeg" />
       </CustomAudio>
