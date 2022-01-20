@@ -5,7 +5,7 @@
  */
 
 import React, { memo, useEffect, useState } from 'react';
-import { Input, Skeleton } from 'antd';
+import { Skeleton } from 'antd';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
@@ -14,16 +14,17 @@ import { compose } from 'redux';
 import { injectSaga } from 'redux-injectors';
 import { debounce, get, isEmpty } from 'lodash';
 import styled from 'styled-components';
+import For from '@components/For';
+import If from '@components/If';
+import T from '@components/T';
+import CustomInput from '@components/CustomInput';
+import ItunesCard from '@app/components/ItunesCard';
+import * as colors from '@app/themes/colors';
 import saga from './saga';
-import ItunesCard from '@app/components/ItunesCard/index';
 import { itunesContainerCreators } from './reducer';
 import { selectItuneName, selectItunesData, selectItunesError } from './selectors';
-import For from '@app/components/For/index';
-import If from '@app/components/If/index';
-import { T } from '@app/components/T/index';
-import * as colors from '@app/themes/colors';
 
-const { Search } = Input;
+const { Search } = CustomInput;
 
 const FlexContainer = styled.div`
   display: grid;
