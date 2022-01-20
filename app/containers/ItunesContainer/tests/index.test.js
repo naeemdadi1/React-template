@@ -11,6 +11,7 @@ import { fireEvent } from '@testing-library/dom';
 import { ItunesContainerTest as ItunesContainer, mapDispatchToProps } from '../index';
 import { itunesContainerTypes } from '../reducer';
 import { mockedItunesData, resultCount } from './mockData';
+import { translate } from '@app/components/IntlGlobalProvider/index';
 
 describe('<ItunesContainer /> container tests', () => {
   let submitSpy;
@@ -97,6 +98,13 @@ describe('<ItunesContainer /> container tests', () => {
     const itunesData = { results: [{ trackName: 'test' }] };
     const { getByTestId } = renderProvider(<ItunesContainer itunesData={itunesData} dispatchItunesData={submitSpy} />);
     expect(getByTestId('itune-card')).toBeInTheDocument();
+  });
+
+  it('should render default error message when search goes wrong', () => {
+    const defaultError = translate('something_went_wrong');
+    const { getByTestId } = renderProvider(<ItunesContainer itunesError={defaultError} />);
+    expect(getByTestId('itunes-error-message')).toBeInTheDocument();
+    expect(getByTestId('itunes-error-message').textContent).toBe(defaultError);
   });
 
   it('should render exact number of ItunesCards as per totalCount in result', () => {
