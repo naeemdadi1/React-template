@@ -1,11 +1,15 @@
 import NotFound from '@containers/NotFoundPage/Loadable';
 import routeConstants from '@utils/routeConstants';
-// import HomeContainer from './containers/HomeContainer/Loadable';
-import ItunesContainer from './containers/ItunesContainer/Loadable';
+import ItuneDetailContainer from './containers/ItunesProvider/ItuneDetailContainer/Loadable';
+import ItunesContainer from './containers/ItunesProvider/ItunesContainer/Loadable';
 export const routeConfig = {
   itunes: {
     component: ItunesContainer,
     ...routeConstants.repos
+  },
+  ituneDetail: {
+    component: ItuneDetailContainer,
+    ...routeConstants.ituneDetail
   },
   notFoundPage: {
     component: NotFound,

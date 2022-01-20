@@ -6,6 +6,8 @@ import { truncate } from 'lodash';
 import styled from 'styled-components';
 import { T } from '@components/T';
 import If from '../If/index';
+import history from '@app/utils/history';
+// import { Link } from 'react-router-dom';
 
 const CustomCard = styled(Card)`
   && {
@@ -31,11 +33,13 @@ const ItunesCard = ({ onClickAction, itune, ituneName }) => {
     artistName,
     previewUrl,
     country,
-    currency
+    currency,
+    trackId
   } = itune;
 
   return (
     <CustomCard
+      onClick={() => trackId && history.push(`/track/${trackId}`)}
       data-testid="itune-card"
       hoverable
       title={trackName ? trackName : ituneName}
