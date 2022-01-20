@@ -25,25 +25,25 @@ exports[`<ItunesCard /> should render and match the snapshot 1`] = `
       >
         <p
           class="T__StyledText-gjlic1-0 kYcyRq"
-          data-testid="artist_name"
+          data-testid="t"
         >
           Artist Name: Blake Shelton
         </p>
         <p
           class="T__StyledText-gjlic1-0 kYcyRq"
-          data-testid="collection_price"
+          data-testid="t"
         >
           Collection Price: 10.99 USD
         </p>
         <p
           class="T__StyledText-gjlic1-0 kYcyRq"
-          data-testid="country"
+          data-testid="t"
         >
           Country: USA
         </p>
         <p
           class="T__StyledText-gjlic1-0 kYcyRq"
-          data-testid="collection_name"
+          data-testid="t"
         >
           Collection Name: Based On a True S...
         </p>

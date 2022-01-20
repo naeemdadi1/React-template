@@ -82,7 +82,9 @@ export function ItunesContainer({ dispatchItunesData, dispatchClearItunesData, i
       <For
         of={itunesData?.results}
         ParentComponent={FlexContainer}
-        renderItem={(item, index) => <ItunesCard key={index} itune={item} onClickAction={onClickAction} />}
+        renderItem={(item, index) => (
+          <ItunesCard key={index} itune={item} ituneName={ituneName} onClickAction={onClickAction} />
+        )}
       />
     </Skeleton>
   );

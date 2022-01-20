@@ -10,6 +10,7 @@ import { renderProvider, timeout } from '@utils/testUtils';
 import { fireEvent } from '@testing-library/dom';
 import { ItunesContainerTest as ItunesContainer, mapDispatchToProps } from '../index';
 import { itunesContainerTypes } from '../reducer';
+import { mockedItunesData, resultCount } from './mockData';
 
 describe('<ItunesContainer /> container tests', () => {
   let submitSpy;
@@ -99,27 +100,6 @@ describe('<ItunesContainer /> container tests', () => {
   });
 
   it('should render exact number of ItunesCards as per totalCount in result', () => {
-    const resultCount = 3;
-    const mockedItunesData = {
-      resultCount,
-      results: [
-        {
-          artistName: 'Blake Shelton',
-          trackName: "Doin' What She Likes",
-          trackPrice: 1.29
-        },
-        {
-          artistName: 'kety',
-          trackName: 'test2',
-          trackPrice: 2.29
-        },
-        {
-          artistName: 'bob',
-          trackName: 'test3',
-          trackPrice: 1.99
-        }
-      ]
-    };
     const { getAllByTestId } = renderProvider(
       <ItunesContainer itunesData={mockedItunesData} dispatchItunesData={submitSpy} />
     );
@@ -134,5 +114,16 @@ describe('<ItunesContainer /> container tests', () => {
     fireEvent.change(getByTestId('search-bar'), { target: { value: ituneName } });
     await timeout(500);
     expect(baseElement.getElementsByClassName('ant-skeleton').length).toBe(1);
+  });
+
+  it('should check play functionality', () => {
+    const { getAllByTestId } = renderProvider(
+      <ItunesContainer dispatchItunesData={submitSpy} itunesData={mockedItunesData} />
+    );
+    const playElems = getAllByTestId('play_event');
+    playElems.forEach((playElem) => {
+      fireEvent.play(playElem);
+    });
+    expect(playElems[0]).toHaveProperty('paused', true);
   });
 });

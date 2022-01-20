@@ -18,7 +18,7 @@ const CustomAudio = styled.audio`
   margin: 1rem 0;
 `;
 
-const ItunesCard = ({ onClickAction, itune }) => {
+const ItunesCard = ({ onClickAction, itune, ituneName }) => {
   const audioRef = useRef();
 
   const {
@@ -38,7 +38,7 @@ const ItunesCard = ({ onClickAction, itune }) => {
     <CustomCard
       data-testid="itune-card"
       hoverable
-      title={trackName}
+      title={trackName ? trackName : ituneName}
       actions={[
         <Tooltip key="artistViewUrl" title="View Artist">
           <Button type="link" target="_blank" href={artistViewUrl} icon={<LinkOutlined />}></Button>
@@ -52,20 +52,16 @@ const ItunesCard = ({ onClickAction, itune }) => {
       ]}
     >
       <If condition={artistName}>
-        <T id="artist_name" data-testid="artist_name" values={{ artistName }} />
+        <T id="artist_name" values={{ artistName }} />
       </If>
       <If condition={(collectionPrice, currency)}>
-        <T id="collection_price" data-testid="collection_price" values={{ collectionPrice, currency }} />
+        <T id="collection_price" values={{ collectionPrice, currency }} />
       </If>
       <If condition={country}>
-        <T id="country" data-testid="country" values={{ country }} />
+        <T id="country" values={{ country }} />
       </If>
       <If condition={collectionName}>
-        <T
-          id="collection_name"
-          data-testid="collection_name"
-          values={{ collectionName: truncate(collectionName, { length: 20 }) }}
-        />
+        <T id="collection_name" values={{ collectionName: truncate(collectionName, { length: 20 }) }} />
       </If>
       <CustomAudio controls data-testid="play_event" onPlay={(e) => onClickAction(e, audioRef)} ref={audioRef}>
         <source src={previewUrl} type="audio/mpeg" />
@@ -77,7 +73,8 @@ const ItunesCard = ({ onClickAction, itune }) => {
 ItunesCard.propTypes = {
   onClickAction: PropTypes.func,
   currTrack: PropTypes.object,
-  itune: PropTypes.object.isRequired
+  itune: PropTypes.object.isRequired,
+  ituneName: PropTypes.string
 };
 
 export default ItunesCard;
