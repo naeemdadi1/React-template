@@ -5,13 +5,13 @@
  */
 
 import React, { memo, useEffect, useState } from 'react';
+import { Input, Skeleton } from 'antd';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { injectSaga } from 'redux-injectors';
-import { Input, Skeleton } from 'antd';
 import { debounce, get, isEmpty } from 'lodash';
 import styled from 'styled-components';
 import saga from './saga';
