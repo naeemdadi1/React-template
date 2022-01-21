@@ -4,7 +4,7 @@ import { getItunes } from '../ituneApi';
 
 describe('ItuneApi tests', () => {
   const ituneName = 'test';
-  it('should make the api call to "/search?term=', async () => {
+  it('should make the api call to "/search?term=&media=music', async () => {
     const mock = new MockAdapter(getApiClient('itune').axiosInstance);
     const data = [
       {
@@ -12,7 +12,7 @@ describe('ItuneApi tests', () => {
         items: [{ ituneName }]
       }
     ];
-    mock.onGet(`/search?term=${ituneName}`).reply(200, data);
+    mock.onGet(`/search?term=${ituneName}&media=music`).reply(200, data);
     const res = await getItunes(ituneName);
     expect(res.data).toEqual(data);
   });

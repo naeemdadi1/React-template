@@ -15,13 +15,13 @@ import { Input, Skeleton } from 'antd';
 import { debounce, get, isEmpty } from 'lodash';
 import styled from 'styled-components';
 import saga from './saga';
-import ItunesCard from '@app/components/ItunesCard/index';
+import ItunesCard from '@components/ItunesCard/index';
 import { itunesContainerCreators } from './reducer';
 import { selectItuneName, selectItunesData, selectItunesError } from './selectors';
-import For from '@app/components/For/index';
-import If from '@app/components/If/index';
-import { T } from '@app/components/T/index';
-import * as colors from '@app/themes/colors';
+import For from '@components/For/index';
+import If from '@components/If/index';
+import { T } from '@components/T/index';
+import * as colors from '@themes/colors';
 
 const { Search } = Input;
 
@@ -69,10 +69,13 @@ export function ItunesContainer({ dispatchItunesData, dispatchClearItunesData, i
   const [currTrack, setCurrTrack] = useState();
 
   const onClickAction = (e, audioRef) => {
-    if (!isEmpty(currTrack) && currTrack !== audioRef?.current) {
-      currTrack.pause();
+    if (e.type === 'play') {
+      if (!isEmpty(currTrack) && currTrack !== audioRef?.current) {
+        currTrack.pause();
+        setCurrTrack(null);
+      }
+      setCurrTrack(audioRef?.current);
     }
-    setCurrTrack(audioRef?.current);
   };
 
   const debouncedHandleOnChange = debounce(handleOnChange, 200);
@@ -83,21 +86,20 @@ export function ItunesContainer({ dispatchItunesData, dispatchClearItunesData, i
         of={itunesData?.results}
         ParentComponent={FlexContainer}
         renderItem={(item, index) => (
-          <ItunesCard key={index} itune={item} ituneName={ituneName} onClickAction={onClickAction} />
+          <ItunesCard key={index} itune={item} currTrack={currTrack} onClickAction={onClickAction} />
         )}
       />
     </Skeleton>
   );
 
-  const renderErrorState = () =>
-    !loading &&
-    itunesError && (
-      <Container>
-        <If condition={itunesError}>
-          <T data-testid="itunes-error-message" text={itunesError} />
-        </If>
-      </Container>
-    );
+  const renderErrorState = () => (
+    <Container>
+      <If condition={itunesError && !loading}>
+        <T data-testid="itunes-error-message" text={itunesError} />
+      </If>
+    </Container>
+  );
+
   return (
     <Container>
       <Search

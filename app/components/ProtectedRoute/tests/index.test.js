@@ -3,7 +3,7 @@ import { renderProvider } from '@utils/testUtils';
 import ProtectedRoute from '../index';
 import '@testing-library/jest-dom';
 import { Router } from 'react-router-dom';
-import HomeContainer from '@app/containers/HomeContainer';
+import HomeContainer from '@containers/HomeContainer';
 import { createBrowserHistory } from 'history';
 
 jest.mock('@utils/routeConstants', () => {

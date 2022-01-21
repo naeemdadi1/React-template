@@ -4,45 +4,35 @@
  *
  */
 
-import { renderWithIntl } from '@app/utils/testUtils';
+import { renderWithIntl, timeout } from '@utils/testUtils';
 import React from 'react';
 import ItunesCard from '../index';
 import { fireEvent } from '@testing-library/dom';
 import { itune } from './mockData';
 
 describe('<ItunesCard />', () => {
-  let onClickAction, ituneName;
+  let onClickAction;
 
   beforeEach(() => {
     itune, (onClickAction = jest.fn());
-    ituneName = 'adele';
   });
   it('should render and match the snapshot', () => {
-    const { baseElement } = renderWithIntl(
-      <ItunesCard itune={itune} ituneName={ituneName} onClickAction={onClickAction} />
-    );
+    const { baseElement } = renderWithIntl(<ItunesCard itune={itune} onClickAction={onClickAction} />);
     expect(baseElement).toMatchSnapshot();
   });
 
   it('should contain 1 ItunesCard component', () => {
-    const { getAllByTestId } = renderWithIntl(
-      <ItunesCard itune={itune} ituneName={ituneName} onClickAction={onClickAction} />
-    );
+    const { getAllByTestId } = renderWithIntl(<ItunesCard itune={itune} onClickAction={onClickAction} />);
     expect(getAllByTestId('itune-card').length).toBe(1);
   });
 
-  it('should trigger the onClickAction on play button click', () => {
-    const { getByTestId } = renderWithIntl(
-      <ItunesCard itune={itune} ituneName={ituneName} onClickAction={onClickAction} />
-    );
-    fireEvent.play(getByTestId('play_event'));
-    expect(onClickAction).toBeCalled();
-  });
+  it('should play when setPlaying is true', async () => {
+    const playEvt = jest.spyOn(window.HTMLMediaElement.prototype, 'play').mockImplementation(() => {});
 
-  it('should render ituneName if trackName is not there', () => {
-    itune.trackName = null;
-    const { getByTestId } = renderWithIntl(<ItunesCard itune={itune} ituneName={ituneName} />);
-    const titleElem = getByTestId('itune-card');
-    expect(titleElem).toHaveTextContent(ituneName);
+    const { getByTestId } = renderWithIntl(<ItunesCard itune={itune} onClickAction={onClickAction} />);
+
+    fireEvent.click(getByTestId('play_event'));
+    await timeout(1000);
+    expect(playEvt).toHaveBeenCalledTimes(1);
   });
 });
