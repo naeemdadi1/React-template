@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Card, Tooltip, Button, Progress } from 'antd';
 import { LinkOutlined, UserOutlined, AudioOutlined, PauseCircleFilled, PlayCircleFilled } from '@ant-design/icons';
 import { T } from '@components/T';
-import If from '../If/index';
+import If from '@components/If';
 import { colors } from '@app/themes';
 
 const CustomCard = styled(Card)`
