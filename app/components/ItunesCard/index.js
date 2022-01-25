@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { truncate } from 'lodash';
 import styled from 'styled-components';
@@ -6,7 +6,7 @@ import { Card, Tooltip, Button, Progress } from 'antd';
 import { LinkOutlined, UserOutlined, AudioOutlined, PauseCircleFilled, PlayCircleFilled } from '@ant-design/icons';
 import { T } from '@components/T';
 import If from '../If/index';
-import * as colors from '@app/themes/colors';
+import { colors } from '@app/themes';
 
 const CustomCard = styled(Card)`
   && {
@@ -19,7 +19,7 @@ const CustomCard = styled(Card)`
 const CustomButton = styled(Button)`
   && {
     border: none;
-    padding: 0;
+    padding: 0.5rem;
     height: unset;
     margin: 0 auto;
     font-size: 2.5rem;
@@ -45,30 +45,12 @@ const CustomProgress = styled(Progress)`
   }
 `;
 
-const ItunesCard = ({ onClickAction, itune, currTrack }) => {
-  const audioRef = useRef();
+const ItunesCard = ({ itune, handlePlaying }) => {
+  const audioRef = useRef(null);
 
+  const [progress, setProgress] = useState(0);
+  const [intervalStore, setIntervalStore] = useState(null);
   const [playing, setPlaying] = useState(false);
-  const [duration, setDuration] = useState(0);
-  const [currDur, setCurrDur] = useState(0);
-
-  useEffect(() => {
-    if (audioRef.current && playing) {
-      audioRef.current.play();
-      setDuration(audioRef.current.duration);
-    }
-    if (audioRef.current && !playing) {
-      audioRef.current.pause();
-      setDuration(0);
-    }
-  }, [playing, audioRef.current]);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setCurrDur(currTrack?.currentTime);
-    }, 1000);
-    return () => clearTimeout(timeout);
-  }, [currTrack?.currentTime]);
 
   const {
     trackName,
@@ -82,6 +64,37 @@ const ItunesCard = ({ onClickAction, itune, currTrack }) => {
     country,
     currency
   } = itune;
+
+  useEffect(() => {
+    clearInterval(intervalStore);
+  }, [itune]);
+
+  useEffect(() => {
+    return () => {
+      clearInterval(intervalStore);
+    };
+  }, []);
+
+  function calculateProgress() {
+    const intervalValue = setInterval(() => {
+      if (audioRef.current) {
+        const fraction = (audioRef.current.currentTime / audioRef.current.duration) * 100;
+        setProgress(fraction);
+      }
+    }, 1000);
+    setIntervalStore(intervalValue);
+  }
+
+  const handleOnActionClick = (val) => {
+    setPlaying(val);
+    if (val) {
+      audioRef.current.play();
+      calculateProgress();
+      handlePlaying(audioRef.current);
+    } else {
+      audioRef.current.pause();
+    }
+  };
 
   return (
     <CustomCard
@@ -118,39 +131,27 @@ const ItunesCard = ({ onClickAction, itune, currTrack }) => {
       <If condition={collectionName}>
         <T id="collection_name" values={{ collectionName: truncate(collectionName, { length: 20 }) }} />
       </If>
-      <If
-        condition={playing && audioRef.current === currTrack}
-        otherwise={
-          <ButtonDiv>
-            <CustomButton onClick={() => setPlaying(true)} data-testid="play_event">
-              <PlayCircleFilled />
-            </CustomButton>
-          </ButtonDiv>
-        }
-      >
-        <ButtonDiv>
-          <CustomButton onClick={() => setPlaying(false)}>
-            <PauseCircleFilled />
-          </CustomButton>
-        </ButtonDiv>
-      </If>
-      <If condition={previewUrl}>
-        <CustomAudio onPlay={(e) => onClickAction(e, audioRef)} onPause={() => setPlaying(false)} ref={audioRef}>
-          <source src={previewUrl} type="audio/mpeg" />
-        </CustomAudio>
-      </If>
-      <If condition={playing && audioRef.current === currTrack && currDur && duration}>
-        <CustomProgress success={{ percent: (100 * currDur) / duration }} showInfo={false} status="active" />
+      <ButtonDiv>
+        <CustomButton onClick={() => handleOnActionClick(true)} data-testid="play-event">
+          <PlayCircleFilled />
+        </CustomButton>
+        <CustomButton onClick={() => handleOnActionClick(false)} data-testid="pause-event">
+          <PauseCircleFilled />
+        </CustomButton>
+      </ButtonDiv>
+      <CustomAudio ref={audioRef} src={previewUrl} data-testid="audio-elem" type="audio/mpeg" />
+      <If condition={playing}>
+        <CustomProgress data-testid="progress-bar" success={{ percent: progress }} showInfo={false} status="active" />
       </If>
     </CustomCard>
   );
 };
 
 ItunesCard.propTypes = {
-  onClickAction: PropTypes.func,
-  currTrack: PropTypes.object,
+  handlePlaying: PropTypes.func,
   itune: PropTypes.object.isRequired,
-  ituneName: PropTypes.string
+  ituneName: PropTypes.string,
+  progress: PropTypes.number
 };
 
 export default ItunesCard;

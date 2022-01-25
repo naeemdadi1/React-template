@@ -51,8 +51,8 @@ exports[`<ItunesCard /> should render and match the snapshot 1`] = `
           class="ItunesCard__ButtonDiv-sijrgi-2 jVYfud"
         >
           <button
-            class="ant-btn ItunesCard__CustomButton-sijrgi-1 cHyttK"
-            data-testid="play_event"
+            class="ant-btn ItunesCard__CustomButton-sijrgi-1 eIsbvD"
+            data-testid="play-event"
             type="button"
           >
             <span
@@ -75,15 +75,38 @@ exports[`<ItunesCard /> should render and match the snapshot 1`] = `
               </svg>
             </span>
           </button>
+          <button
+            class="ant-btn ItunesCard__CustomButton-sijrgi-1 eIsbvD"
+            data-testid="pause-event"
+            type="button"
+          >
+            <span
+              aria-label="pause-circle"
+              class="anticon anticon-pause-circle"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                data-icon="pause-circle"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-80 600c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V360c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v304zm224 0c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V360c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v304z"
+                />
+              </svg>
+            </span>
+          </button>
         </div>
         <audio
           class="ItunesCard__CustomAudio-sijrgi-3 bSkkyz"
-        >
-          <source
-            src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/98/70/8c/98708cde-2365-38e9-7eab-76786d3ef1a9/mzaf_12146965378941562534.plus.aac.p.m4a"
-            type="audio/mpeg"
-          />
-        </audio>
+          data-testid="audio-elem"
+          src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/98/70/8c/98708cde-2365-38e9-7eab-76786d3ef1a9/mzaf_12146965378941562534.plus.aac.p.m4a"
+          type="audio/mpeg"
+        />
       </div>
       <ul
         class="ant-card-actions"

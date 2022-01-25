@@ -124,14 +124,22 @@ describe('<ItunesContainer /> container tests', () => {
     expect(baseElement.getElementsByClassName('ant-skeleton').length).toBe(1);
   });
 
-  // it('should check play functionality', () => {
-  //   const { getAllByTestId } = renderProvider(
-  //     <ItunesContainer dispatchItunesData={submitSpy} itunesData={mockedItunesData} />
-  //   );
-  //   const playElems = getAllByTestId('play_event');
-  //   playElems.forEach((playElem) => {
-  //     fireEvent.play(playElem);
-  //   });
-  //   expect(playElems[0]).toHaveProperty('paused', true);
-  // });
+  it('should check the play and pause functionality', () => {
+    jest.spyOn(window.HTMLMediaElement.prototype, 'play').mockImplementation(() => {});
+
+    const { getAllByTestId } = renderProvider(
+      <ItunesContainer dispatchItunesData={submitSpy} itunesData={mockedItunesData} />
+    );
+
+    const audioElems = getAllByTestId('audio-elem');
+    const playEvts = getAllByTestId('play-event');
+
+    fireEvent.click(playEvts[0]);
+    expect(audioElems[0]).not.toHaveAttribute('paused');
+
+    fireEvent.click(playEvts[1]);
+
+    expect(audioElems[0]).toHaveProperty('paused', true);
+    expect(audioElems[1]).not.toHaveAttribute('paused');
+  });
 });
