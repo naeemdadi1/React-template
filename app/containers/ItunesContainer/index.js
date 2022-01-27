@@ -68,11 +68,13 @@ export function ItunesContainer({ dispatchItunesData, dispatchClearItunesData, i
 
   const [currTrack, setCurrTrack] = useState();
 
-  const handlePlaying = (audioElem) => {
-    if (!isEmpty(currTrack) && currTrack !== audioElem) {
-      currTrack?.pause();
+  const handleOnActionClick = (audioElem) => {
+    if (!audioElem.paused) {
+      if (!isEmpty(currTrack) && currTrack !== audioElem) {
+        currTrack.pause();
+      }
+      setCurrTrack(audioElem);
     }
-    setCurrTrack(audioElem);
   };
 
   const debouncedHandleOnChange = debounce(handleOnChange, 200);
@@ -82,7 +84,7 @@ export function ItunesContainer({ dispatchItunesData, dispatchClearItunesData, i
       <For
         of={itunesData?.results}
         ParentComponent={FlexContainer}
-        renderItem={(item, index) => <ItunesCard key={index} itune={item} handlePlaying={handlePlaying} />}
+        renderItem={(item, index) => <ItunesCard key={index} itune={item} handleOnActionClick={handleOnActionClick} />}
       />
     </Skeleton>
   );

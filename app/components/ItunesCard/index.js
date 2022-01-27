@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { truncate } from 'lodash';
 import styled from 'styled-components';
+import { injectIntl } from 'react-intl';
 import { Card, Tooltip, Button, Progress } from 'antd';
 import { LinkOutlined, UserOutlined, AudioOutlined, PauseCircleFilled, PlayCircleFilled } from '@ant-design/icons';
 import { T } from '@components/T';
@@ -37,7 +38,7 @@ const CustomAudio = styled.audio`
 const CustomProgress = styled(Progress)`
   && {
     position: absolute;
-    top: -0.6rem;
+    bottom: -0.6rem;
     left: 0;
   }
   && inner {
@@ -45,12 +46,11 @@ const CustomProgress = styled(Progress)`
   }
 `;
 
-const ItunesCard = ({ itune, handlePlaying }) => {
+const ItunesCard = ({ itune, handleOnActionClick, intl }) => {
   const audioRef = useRef(null);
 
   const [progress, setProgress] = useState(0);
   const [intervalStore, setIntervalStore] = useState(null);
-  const [playing, setPlaying] = useState(false);
 
   const {
     trackName,
@@ -85,15 +85,14 @@ const ItunesCard = ({ itune, handlePlaying }) => {
     setIntervalStore(intervalValue);
   }
 
-  const handleOnActionClick = (val) => {
-    setPlaying(val);
+  const handlePlaying = (val) => {
     if (val) {
       audioRef.current.play();
       calculateProgress();
-      handlePlaying(audioRef.current);
     } else {
       audioRef.current.pause();
     }
+    handleOnActionClick(audioRef.current);
   };
 
   return (
@@ -103,55 +102,87 @@ const ItunesCard = ({ itune, handlePlaying }) => {
       title={trackName}
       actions={[
         <If condition={artistViewUrl} key="artistViewUrl">
-          <Tooltip title="View Artist">
-            <Button type="link" target="_blank" href={artistViewUrl} icon={<UserOutlined />}></Button>
+          <Tooltip title={intl.formatMessage({ id: 'view_artist' })}>
+            <Button
+              data-testid="view-artist"
+              type="link"
+              target="_blank"
+              href={artistViewUrl}
+              icon={<UserOutlined />}
+            ></Button>
           </Tooltip>
         </If>,
         <If condition={trackViewUrl} key="trackViewUrl">
-          <Tooltip title="View Track">
-            <Button type="link" target="_blank" href={trackViewUrl} icon={<AudioOutlined />}></Button>
+          <Tooltip title={intl.formatMessage({ id: 'view_track' })}>
+            <Button
+              data-testid="view-track"
+              type="link"
+              target="_blank"
+              href={trackViewUrl}
+              icon={<AudioOutlined />}
+            ></Button>
           </Tooltip>
         </If>,
         <If condition={collectionViewUrl} key="collectionViewUrl">
-          <Tooltip title="View Collection">
-            <Button type="link" target="_blank" href={collectionViewUrl} icon={<LinkOutlined />}></Button>
+          <Tooltip title={intl.formatMessage({ id: 'view_collection' })}>
+            <Button
+              data-testid="view-collection"
+              type="link"
+              target="_blank"
+              href={collectionViewUrl}
+              icon={<LinkOutlined />}
+            ></Button>
           </Tooltip>
         </If>
       ]}
     >
       <If condition={artistName}>
-        <T id="artist_name" values={{ artistName: truncate(artistName, { length: 20 }) }} />
+        <T id="artist_name" data-testid="artist-name" values={{ artistName: truncate(artistName, { length: 20 }) }} />
       </If>
-      <If condition={(collectionPrice, currency)}>
-        <T id="collection_price" values={{ collectionPrice, currency }} />
+      <If condition={collectionPrice && currency}>
+        <T id="collection_price" data-testid="collection-price" values={{ collectionPrice, currency }} />
       </If>
       <If condition={country}>
-        <T id="country" values={{ country }} />
+        <T id="country" values={{ country }} data-testid="country" />
       </If>
       <If condition={collectionName}>
-        <T id="collection_name" values={{ collectionName: truncate(collectionName, { length: 20 }) }} />
+        <T
+          id="collection_name"
+          data-testid="collection-name"
+          values={{ collectionName: truncate(collectionName, { length: 20 }) }}
+        />
       </If>
       <ButtonDiv>
-        <CustomButton onClick={() => handleOnActionClick(true)} data-testid="play-event">
+        <CustomButton onClick={() => handlePlaying(true)} data-testid="play-event">
           <PlayCircleFilled />
         </CustomButton>
-        <CustomButton onClick={() => handleOnActionClick(false)} data-testid="pause-event">
+        <CustomButton onClick={() => handlePlaying(false)} data-testid="pause-event">
           <PauseCircleFilled />
         </CustomButton>
       </ButtonDiv>
       <CustomAudio ref={audioRef} src={previewUrl} data-testid="audio-elem" type="audio/mpeg" />
-      <If condition={playing}>
-        <CustomProgress data-testid="progress-bar" success={{ percent: progress }} showInfo={false} status="active" />
-      </If>
+      <CustomProgress data-testid="progress-bar" success={{ percent: progress }} showInfo={false} status="active" />
     </CustomCard>
   );
 };
 
 ItunesCard.propTypes = {
-  handlePlaying: PropTypes.func,
-  itune: PropTypes.object.isRequired,
-  ituneName: PropTypes.string,
-  progress: PropTypes.number
+  handleOnActionClick: PropTypes.func,
+  itune: PropTypes.shape({
+    artistName: PropTypes.string.isRequired,
+    collectionName: PropTypes.string.isRequired,
+    trackName: PropTypes.string.isRequired,
+    artistViewUrl: PropTypes.string.isRequired,
+    collectionViewUrl: PropTypes.string.isRequired,
+    trackViewUrl: PropTypes.string.isRequired,
+    previewUrl: PropTypes.string.isRequired,
+    collectionPrice: PropTypes.number.isRequired,
+    trackPrice: PropTypes.number.isRequired,
+    country: PropTypes.string.isRequired,
+    currency: PropTypes.string.isRequired,
+    length: PropTypes.number
+  }).isRequired,
+  intl: PropTypes.object
 };
 
-export default ItunesCard;
+export default injectIntl(ItunesCard);

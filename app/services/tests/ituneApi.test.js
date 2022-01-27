@@ -4,7 +4,7 @@ import { getItunes } from '../ituneApi';
 
 describe('ItuneApi tests', () => {
   const ituneName = 'test';
-  it('should make the api call to "/search?term=&media=music', async () => {
+  it('should make the api call to "/search?term=${ituneName}&media=music', async () => {
     const mock = new MockAdapter(getApiClient('itune').axiosInstance);
     const data = [
       {
