@@ -127,6 +127,7 @@ describe('<ItunesContainer /> container tests', () => {
 
   it('should check if earlier played track is paused if the new track starts playing', () => {
     jest.spyOn(window.HTMLMediaElement.prototype, 'play').mockImplementation(() => {});
+    jest.spyOn(window.HTMLMediaElement.prototype, 'pause').mockImplementation(() => {});
 
     const { getAllByTestId } = renderProvider(
       <ItunesContainer dispatchItunesData={submitSpy} itunesData={mockedItunesData} />
@@ -134,6 +135,7 @@ describe('<ItunesContainer /> container tests', () => {
 
     const audioElems = getAllByTestId('audio-elem');
     const playEvts = getAllByTestId('play-event');
+    const pauseEvts = getAllByTestId('pause-event');
 
     fireEvent.click(playEvts[0]);
     expect(audioElems[0]).not.toHaveAttribute('paused');
@@ -142,5 +144,8 @@ describe('<ItunesContainer /> container tests', () => {
 
     expect(audioElems[0]).toHaveProperty('paused', true);
     expect(audioElems[1]).not.toHaveAttribute('paused');
+
+    fireEvent.click(pauseEvts[1]);
+    expect(audioElems[1]).toHaveProperty('paused', true);
   });
 });

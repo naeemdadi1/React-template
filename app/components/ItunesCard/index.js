@@ -38,10 +38,10 @@ const CustomAudio = styled.audio`
 const CustomProgress = styled(Progress)`
   && {
     position: absolute;
-    bottom: -0.6rem;
+    bottom: -0.4rem;
     left: 0;
   }
-  && inner {
+  && .ant-progress-inner {
     background-color: ${colors.transparent};
   }
 `;
@@ -77,10 +77,8 @@ const ItunesCard = ({ itune, handleOnActionClick, intl }) => {
 
   function calculateProgress() {
     const intervalValue = setInterval(() => {
-      if (audioRef.current) {
-        const fraction = (audioRef.current.currentTime / audioRef.current.duration) * 100;
-        setProgress(fraction);
-      }
+      const fraction = (audioRef.current.currentTime / audioRef.current.duration) * 100;
+      setProgress(fraction);
     }, 1000);
     setIntervalStore(intervalValue);
   }
@@ -92,7 +90,7 @@ const ItunesCard = ({ itune, handleOnActionClick, intl }) => {
     } else {
       audioRef.current.pause();
     }
-    handleOnActionClick(audioRef.current);
+    handleOnActionClick(val, audioRef.current);
   };
 
   return (

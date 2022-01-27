@@ -108,7 +108,7 @@ exports[`<ItunesCard /> should render and match the snapshot 1`] = `
           type="audio/mpeg"
         />
         <div
-          class="ant-progress ant-progress-line ant-progress-status-active ant-progress-default ItunesCard__CustomProgress-sijrgi-4 ejaSUK"
+          class="ant-progress ant-progress-line ant-progress-status-active ant-progress-default ItunesCard__CustomProgress-sijrgi-4 bRjuEE"
           data-testid="progress-bar"
         >
           <div

@@ -12,3 +12,17 @@ export const itune = {
   country: 'USA',
   currency: 'USD'
 };
+
+export const ituneEmp = {
+  artistName: null,
+  collectionName: null,
+  trackName: null,
+  artistViewUrl: null,
+  collectionViewUrl: null,
+  trackViewUrl: null,
+  previewUrl: null,
+  collectionPrice: null,
+  trackPrice: null,
+  country: null,
+  currency: null
+};

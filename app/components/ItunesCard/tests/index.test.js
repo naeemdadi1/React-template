@@ -9,7 +9,7 @@ import { fireEvent } from '@testing-library/dom';
 
 import React from 'react';
 import ItunesCard from '../index';
-import { itune } from './mockData';
+import { itune, ituneEmp } from './mockData';
 import { truncate } from 'lodash';
 
 describe('<ItunesCard />', () => {
@@ -40,6 +40,18 @@ describe('<ItunesCard />', () => {
     expect(getByTestId('view-collection').href).toBe(itune.collectionViewUrl);
     expect(getByTestId('view-track').href).toBe(itune.trackViewUrl);
     expect(getByTestId('progress-bar')).toBeInTheDocument();
+  });
+
+  it('should not render the song details if the values in itune track object is empty', () => {
+    const { queryByTestId } = renderWithIntl(<ItunesCard itune={ituneEmp} handleOnActionClick={handleOnActionClick} />);
+
+    expect(queryByTestId('artist-name')).not.toBeInTheDocument();
+    expect(queryByTestId('collection-price')).not.toBeInTheDocument();
+    expect(queryByTestId('country')).not.toBeInTheDocument();
+    expect(queryByTestId('collection-name')).not.toBeInTheDocument();
+    expect(queryByTestId('view-artist')).not.toBeInTheDocument();
+    expect(queryByTestId('view-collection')).not.toBeInTheDocument();
+    expect(queryByTestId('view-track')).not.toBeInTheDocument();
   });
 
   it('should play and pause the track based on action click', () => {
@@ -77,7 +89,7 @@ describe('<ItunesCard />', () => {
     });
 
     // Check is audio reference is called with play.
-    expect(handleOnActionClick).toBeCalledWith(expect.objectContaining(audio));
+    expect(handleOnActionClick).toBeCalledWith(true, expect.objectContaining(audio));
 
     jest.runOnlyPendingTimers();
 
@@ -86,6 +98,6 @@ describe('<ItunesCard />', () => {
 
     // Check if the audio refence is called with pause.
     fireEvent.click(getByTestId('pause-event'));
-    expect(handleOnActionClick).toBeCalledWith(expect.objectContaining(audio));
+    expect(handleOnActionClick).toBeCalledWith(false, expect.objectContaining(audio));
   });
 });

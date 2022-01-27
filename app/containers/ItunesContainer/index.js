@@ -68,8 +68,8 @@ export function ItunesContainer({ dispatchItunesData, dispatchClearItunesData, i
 
   const [currTrack, setCurrTrack] = useState();
 
-  const handleOnActionClick = (audioElem) => {
-    if (!audioElem.paused) {
+  const onActionClick = (val, audioElem) => {
+    if (val) {
       if (!isEmpty(currTrack) && currTrack !== audioElem) {
         currTrack.pause();
       }
@@ -84,7 +84,7 @@ export function ItunesContainer({ dispatchItunesData, dispatchClearItunesData, i
       <For
         of={itunesData?.results}
         ParentComponent={FlexContainer}
-        renderItem={(item, index) => <ItunesCard key={index} itune={item} handleOnActionClick={handleOnActionClick} />}
+        renderItem={(item, index) => <ItunesCard key={index} itune={item} handleOnActionClick={onActionClick} />}
       />
     </Skeleton>
   );
