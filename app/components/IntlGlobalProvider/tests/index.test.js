@@ -1,4 +1,4 @@
-import getIntl from '@app/utils/getIntl';
+import getIntl from '@utils/getIntl';
 import { render } from '@testing-library/react';
 import React from 'react';
 import { IntlGlobalProvider, setIntl, translate } from '../index';

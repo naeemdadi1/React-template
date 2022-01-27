@@ -4,7 +4,7 @@ exports[`<ItunesCard /> should render and match the snapshot 1`] = `
 <body>
   <div>
     <div
-      class="ant-card ant-card-bordered ant-card-hoverable ItunesCard__CustomCard-sijrgi-0 kYhVSA"
+      class="ant-card ant-card-bordered ant-card-hoverable ItunesCard__CustomCard-sijrgi-0 dhUupQ"
       data-testid="itune-card"
     >
       <div
@@ -25,38 +25,109 @@ exports[`<ItunesCard /> should render and match the snapshot 1`] = `
       >
         <p
           class="T__StyledText-gjlic1-0 kYcyRq"
-          data-testid="t"
+          data-testid="artist-name"
         >
           Artist Name: Blake Shelton
         </p>
         <p
           class="T__StyledText-gjlic1-0 kYcyRq"
-          data-testid="t"
+          data-testid="collection-price"
         >
           Collection Price: 10.99 USD
         </p>
         <p
           class="T__StyledText-gjlic1-0 kYcyRq"
-          data-testid="t"
+          data-testid="country"
         >
           Country: USA
         </p>
         <p
           class="T__StyledText-gjlic1-0 kYcyRq"
-          data-testid="t"
+          data-testid="collection-name"
         >
           Collection Name: Based On a True S...
         </p>
-        <audio
-          class="ItunesCard__CustomAudio-sijrgi-1 hTstUt"
-          controls=""
-          data-testid="play_event"
+        <div
+          class="ItunesCard__ButtonDiv-sijrgi-2 jVYfud"
         >
-          <source
-            src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/98/70/8c/98708cde-2365-38e9-7eab-76786d3ef1a9/mzaf_12146965378941562534.plus.aac.p.m4a"
-            type="audio/mpeg"
-          />
-        </audio>
+          <button
+            class="ant-btn ItunesCard__CustomButton-sijrgi-1 eIsbvD"
+            data-testid="play-event"
+            type="button"
+          >
+            <span
+              aria-label="play-circle"
+              class="anticon anticon-play-circle"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                data-icon="play-circle"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm144.1 454.9L437.7 677.8a8.02 8.02 0 01-12.7-6.5V353.7a8 8 0 0112.7-6.5L656.1 506a7.9 7.9 0 010 12.9z"
+                />
+              </svg>
+            </span>
+          </button>
+          <button
+            class="ant-btn ItunesCard__CustomButton-sijrgi-1 eIsbvD"
+            data-testid="pause-event"
+            type="button"
+          >
+            <span
+              aria-label="pause-circle"
+              class="anticon anticon-pause-circle"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                data-icon="pause-circle"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-80 600c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V360c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v304zm224 0c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V360c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v304z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+        <audio
+          class="ItunesCard__CustomAudio-sijrgi-3 bSkkyz"
+          data-testid="audio-elem"
+          src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/98/70/8c/98708cde-2365-38e9-7eab-76786d3ef1a9/mzaf_12146965378941562534.plus.aac.p.m4a"
+          type="audio/mpeg"
+        />
+        <div
+          class="ant-progress ant-progress-line ant-progress-status-active ant-progress-default ItunesCard__CustomProgress-sijrgi-4 bRjuEE"
+          data-testid="progress-bar"
+        >
+          <div
+            class="ant-progress-outer"
+          >
+            <div
+              class="ant-progress-inner"
+            >
+              <div
+                class="ant-progress-bg"
+                style="width: 0%; height: 8px;"
+              />
+              <div
+                class="ant-progress-success-bg"
+                style="width: 0%; height: 8px;"
+              />
+            </div>
+          </div>
+        </div>
       </div>
       <ul
         class="ant-card-actions"
@@ -67,17 +138,18 @@ exports[`<ItunesCard /> should render and match the snapshot 1`] = `
           <span>
             <a
               class="ant-btn ant-btn-link ant-btn-icon-only"
+              data-testid="view-artist"
               href="https://music.apple.com/us/artist/blake-shelton/189204?uo=4"
               target="_blank"
             >
               <span
-                aria-label="link"
-                class="anticon anticon-link"
+                aria-label="user"
+                class="anticon anticon-user"
                 role="img"
               >
                 <svg
                   aria-hidden="true"
-                  data-icon="link"
+                  data-icon="user"
                   fill="currentColor"
                   focusable="false"
                   height="1em"
@@ -85,7 +157,7 @@ exports[`<ItunesCard /> should render and match the snapshot 1`] = `
                   width="1em"
                 >
                   <path
-                    d="M574 665.4a8.03 8.03 0 00-11.3 0L446.5 781.6c-53.8 53.8-144.6 59.5-204 0-59.5-59.5-53.8-150.2 0-204l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3l-39.8-39.8a8.03 8.03 0 00-11.3 0L191.4 526.5c-84.6 84.6-84.6 221.5 0 306s221.5 84.6 306 0l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3L574 665.4zm258.6-474c-84.6-84.6-221.5-84.6-306 0L410.3 307.6a8.03 8.03 0 000 11.3l39.7 39.7c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c53.8-53.8 144.6-59.5 204 0 59.5 59.5 53.8 150.2 0 204L665.3 562.6a8.03 8.03 0 000 11.3l39.8 39.8c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c84.5-84.6 84.5-221.5 0-306.1zM610.1 372.3a8.03 8.03 0 00-11.3 0L372.3 598.7a8.03 8.03 0 000 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l226.4-226.4c3.1-3.1 3.1-8.2 0-11.3l-39.5-39.6z"
+                    d="M858.5 763.6a374 374 0 00-80.6-119.5 375.63 375.63 0 00-119.5-80.6c-.4-.2-.8-.3-1.2-.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1-.4.2-.8.3-1.2.5-44.8 18.9-85 46-119.5 80.6a375.63 375.63 0 00-80.6 119.5A371.7 371.7 0 00136 901.8a8 8 0 008 8.2h60c4.4 0 7.9-3.5 8-7.8 2-77.2 33-149.5 87.8-204.3 56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c.1 4.4 3.6 7.8 8 7.8h60a8 8 0 008-8.2c-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z"
                   />
                 </svg>
               </span>
@@ -98,17 +170,18 @@ exports[`<ItunesCard /> should render and match the snapshot 1`] = `
           <span>
             <a
               class="ant-btn ant-btn-link ant-btn-icon-only"
+              data-testid="view-track"
               href="https://music.apple.com/us/album/doin-what-she-likes/606057263?i=606057326&uo=4"
               target="_blank"
             >
               <span
-                aria-label="link"
-                class="anticon anticon-link"
+                aria-label="audio"
+                class="anticon anticon-audio"
                 role="img"
               >
                 <svg
                   aria-hidden="true"
-                  data-icon="link"
+                  data-icon="audio"
                   fill="currentColor"
                   focusable="false"
                   height="1em"
@@ -116,7 +189,7 @@ exports[`<ItunesCard /> should render and match the snapshot 1`] = `
                   width="1em"
                 >
                   <path
-                    d="M574 665.4a8.03 8.03 0 00-11.3 0L446.5 781.6c-53.8 53.8-144.6 59.5-204 0-59.5-59.5-53.8-150.2 0-204l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3l-39.8-39.8a8.03 8.03 0 00-11.3 0L191.4 526.5c-84.6 84.6-84.6 221.5 0 306s221.5 84.6 306 0l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3L574 665.4zm258.6-474c-84.6-84.6-221.5-84.6-306 0L410.3 307.6a8.03 8.03 0 000 11.3l39.7 39.7c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c53.8-53.8 144.6-59.5 204 0 59.5 59.5 53.8 150.2 0 204L665.3 562.6a8.03 8.03 0 000 11.3l39.8 39.8c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c84.5-84.6 84.5-221.5 0-306.1zM610.1 372.3a8.03 8.03 0 00-11.3 0L372.3 598.7a8.03 8.03 0 000 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l226.4-226.4c3.1-3.1 3.1-8.2 0-11.3l-39.5-39.6z"
+                    d="M842 454c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8 0 140.3-113.7 254-254 254S258 594.3 258 454c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8 0 168.7 126.6 307.9 290 327.6V884H326.7c-13.7 0-24.7 14.3-24.7 32v36c0 4.4 2.8 8 6.2 8h407.6c3.4 0 6.2-3.6 6.2-8v-36c0-17.7-11-32-24.7-32H548V782.1c165.3-18 294-158 294-328.1zM512 624c93.9 0 170-75.2 170-168V232c0-92.8-76.1-168-170-168s-170 75.2-170 168v224c0 92.8 76.1 168 170 168zm-94-392c0-50.6 41.9-92 94-92s94 41.4 94 92v224c0 50.6-41.9 92-94 92s-94-41.4-94-92V232z"
                   />
                 </svg>
               </span>
@@ -129,6 +202,7 @@ exports[`<ItunesCard /> should render and match the snapshot 1`] = `
           <span>
             <a
               class="ant-btn ant-btn-link ant-btn-icon-only"
+              data-testid="view-collection"
               href="https://music.apple.com/us/album/doin-what-she-likes/606057263?i=606057326&uo=4"
               target="_blank"
             >

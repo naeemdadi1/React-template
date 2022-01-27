@@ -1,4 +1,4 @@
-import { generateApiClient } from '@app/utils/apiUtils';
+import { generateApiClient } from '@utils/apiUtils';
 
 const ituneApi = generateApiClient('ituneDetail');
 

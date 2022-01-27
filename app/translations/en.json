@@ -17,5 +17,8 @@
   "artist_name": "Artist Name: {artistName}",
   "collection_price": "Collection Price: {collectionPrice} {currency}",
   "country": "Country: {country}",
-  "collection_name": "Collection Name: {collectionName}"
+  "collection_name": "Collection Name: {collectionName}",
+  "view_artist": "View Artist",
+  "view_collection": "View Collection",
+  "view_track": "View Track"
 }

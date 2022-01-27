@@ -10,8 +10,8 @@ import { renderProvider, timeout } from '@utils/testUtils';
 import { fireEvent } from '@testing-library/dom';
 import { ItunesContainerTest as ItunesContainer, mapDispatchToProps } from '../index';
 import { itunesContainerTypes } from '../../reducer';
-import { mockedItunesData, resultCount } from './mockData';
-import { translate } from '@app/components/IntlGlobalProvider/index';
+import { mockedItuneData, mockedItunesData, resultCount } from './mockData';
+import { translate } from '@components/IntlGlobalProvider/index';
 
 describe('<ItunesContainer /> container tests', () => {
   let submitSpy;
@@ -60,7 +60,7 @@ describe('<ItunesContainer /> container tests', () => {
     expect(clearItunesDataSpy).toBeCalled();
   });
 
-  it('should call dispatchItunesData on onSearch submit', async () => {
+  it('should call dispatchItunesData on submitting the search', async () => {
     const ituneName = 'test';
     const { getByTestId } = renderProvider(<ItunesContainer dispatchItunesData={submitSpy} />);
     fireEvent.keyDown(getByTestId('search-bar'), { keyCode: 13, target: { value: ituneName } });
@@ -94,17 +94,18 @@ describe('<ItunesContainer /> container tests', () => {
     expect(dispatchItunesSearchSpy).toHaveBeenCalledWith(actions.dispatchClearItunesData);
   });
 
-  it('should render the data when loading becomes false', () => {
-    const itunesData = { results: [{ trackName: 'test' }] };
-    const { getByTestId } = renderProvider(<ItunesContainer itunesData={itunesData} dispatchItunesData={submitSpy} />);
+  it('should render the itunes data when search query is resolved and data saved in store', () => {
+    const { getByTestId } = renderProvider(
+      <ItunesContainer itunesData={mockedItuneData} dispatchItunesData={submitSpy} />
+    );
     expect(getByTestId('itune-card')).toBeInTheDocument();
   });
 
-  it('should render default error message when search goes wrong', () => {
-    const defaultError = translate('something_went_wrong');
-    const { getByTestId } = renderProvider(<ItunesContainer itunesError={defaultError} />);
+  it('should render error message when search query is not resolved', () => {
+    const customError = translate('something_went_wrong');
+    const { getByTestId } = renderProvider(<ItunesContainer itunesError={customError} />);
     expect(getByTestId('itunes-error-message')).toBeInTheDocument();
-    expect(getByTestId('itunes-error-message').textContent).toBe(defaultError);
+    expect(getByTestId('itunes-error-message').textContent).toBe(customError);
   });
 
   it('should render exact number of ItunesCards as per totalCount in result', () => {
@@ -124,14 +125,27 @@ describe('<ItunesContainer /> container tests', () => {
     expect(baseElement.getElementsByClassName('ant-skeleton').length).toBe(1);
   });
 
-  it('should check play functionality', () => {
+  it('should check if earlier played track is paused if the new track starts playing', () => {
+    jest.spyOn(window.HTMLMediaElement.prototype, 'play').mockImplementation(() => {});
+    jest.spyOn(window.HTMLMediaElement.prototype, 'pause').mockImplementation(() => {});
+
     const { getAllByTestId } = renderProvider(
       <ItunesContainer dispatchItunesData={submitSpy} itunesData={mockedItunesData} />
     );
-    const playElems = getAllByTestId('play_event');
-    playElems.forEach((playElem) => {
-      fireEvent.play(playElem);
-    });
-    expect(playElems[0]).toHaveProperty('paused', true);
+
+    const audioElems = getAllByTestId('audio-elem');
+    const playEvts = getAllByTestId('play-event');
+    const pauseEvts = getAllByTestId('pause-event');
+
+    fireEvent.click(playEvts[0]);
+    expect(audioElems[0]).not.toHaveAttribute('paused');
+
+    fireEvent.click(playEvts[1]);
+
+    expect(audioElems[0]).toHaveProperty('paused', true);
+    expect(audioElems[1]).not.toHaveAttribute('paused');
+
+    fireEvent.click(pauseEvts[1]);
+    expect(audioElems[1]).toHaveProperty('paused', true);
   });
 });

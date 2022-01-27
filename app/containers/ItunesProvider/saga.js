@@ -1,5 +1,5 @@
-import { getItunes } from '@app/services/ituneApi';
-import { getItunesDetail } from '@app/services/ituneDetailApi';
+import { getItunes } from '@services/ituneApi';
+import { getItunesDetail } from '@services/ituneDetailApi';
 import { takeLatest, call, put } from 'redux-saga/effects';
 import { itunesContainerCreators, itunesContainerTypes } from './reducer';
 // Individual exports for testing
