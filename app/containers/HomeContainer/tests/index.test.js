@@ -8,7 +8,7 @@ import React from 'react';
 import { Router } from 'react-router';
 import { fireEvent } from '@testing-library/dom';
 import { timeout, renderProvider } from '@utils/testUtils';
-import { translate } from '@app/components/IntlGlobalProvider';
+import { translate } from '@components/IntlGlobalProvider';
 import { HomeContainerTest as HomeContainer, mapDispatchToProps } from '../index';
 import { homeContainerTypes } from '../reducer';
 import { createBrowserHistory } from 'history';

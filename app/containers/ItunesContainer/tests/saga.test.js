@@ -6,8 +6,8 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import itunesContainerSaga, { getItunesData } from '../saga';
 import { itunesContainerTypes } from '../reducer';
-import { apiResponseGenerator } from '@app/utils/testUtils';
-import { getItunes } from '@app/services/ituneApi';
+import { apiResponseGenerator } from '@utils/testUtils';
+import { getItunes } from '@services/ituneApi';
 
 describe('ItunesContainer saga tests', () => {
   const generator = itunesContainerSaga();

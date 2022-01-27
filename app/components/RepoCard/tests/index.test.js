@@ -8,7 +8,7 @@ import React from 'react';
 // import { fireEvent } from '@testing-library/dom'
 import { renderWithIntl } from '@utils/testUtils';
 import RepoCard from '../index';
-import { translate } from '@app/components/IntlGlobalProvider/index';
+import { translate } from '@components/IntlGlobalProvider/index';
 
 describe('<RepoCard />', () => {
   it('should render and match the snapshot', () => {
