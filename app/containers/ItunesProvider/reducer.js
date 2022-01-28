@@ -20,10 +20,11 @@ export const { Types: itunesContainerTypes, Creators: itunesContainerCreators } 
   requestGetItunesData: ['ituneName'],
   successGetItunesData: ['data'],
   failureGetItunesData: ['error'],
-  getItunesId: ['id'],
+  requestGetItune: ['id'],
   successGetItuneDetail: ['ituneDetail'],
   failureGetItuneDetail: ['ituneDetailError'],
-  clearItunesData: null
+  clearItunesData: null,
+  clearItuneDetails: null
 });
 
 export const itunesContainerReducer = (state = initialState, action) =>
@@ -38,19 +39,24 @@ export const itunesContainerReducer = (state = initialState, action) =>
       case itunesContainerTypes.FAILURE_GET_ITUNES_DATA:
         draft.itunesError = get(action.error, 'message', 'something went wrong');
         break;
-      case itunesContainerTypes.GET_ITUNES_ID:
+      case itunesContainerTypes.REQUEST_GET_ITUNE:
         draft.id = action.id;
         break;
       case itunesContainerTypes.SUCCESS_GET_ITUNE_DETAIL:
         draft.ituneDetail = action.ituneDetail;
         break;
       case itunesContainerTypes.FAILURE_GET_ITUNE_DETAIL:
-        draft.ituneDetailError = action.ituneDetailError;
+        draft.ituneDetailError = get(action.ituneDetailError, 'message', 'something went wrong');
         break;
       case itunesContainerTypes.CLEAR_ITUNES_DATA:
         draft.ituneName = null;
         draft.itunesError = null;
         draft.itunesData = {};
+        break;
+      case itunesContainerTypes.CLEAR_ITUNE_DETAILS:
+        draft.id = null;
+        draft.ituneDetail = {};
+        draft.ituneDetailError = null;
         break;
     }
   });

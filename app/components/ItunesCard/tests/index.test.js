@@ -6,11 +6,25 @@
 
 import { renderWithIntl } from '@utils/testUtils';
 import { fireEvent } from '@testing-library/dom';
-
+import PropTypes from 'prop-types';
 import React from 'react';
 import ItunesCard from '../index';
 import { itune, ituneEmp } from './mockData';
 import { truncate } from 'lodash';
+import { BrowserRouter } from 'react-router-dom';
+
+const BrowserItunesCard = ({ itune, handleOnActionClick }) => {
+  return (
+    <BrowserRouter>
+      <ItunesCard itune={itune} handleOnActionClick={handleOnActionClick} />
+    </BrowserRouter>
+  );
+};
+
+BrowserItunesCard.propTypes = {
+  handleOnActionClick: PropTypes.func,
+  itune: PropTypes.object
+};
 
 describe('<ItunesCard />', () => {
   let handleOnActionClick;
@@ -19,17 +33,23 @@ describe('<ItunesCard />', () => {
     itune, (handleOnActionClick = jest.fn());
   });
   it('should render and match the snapshot', () => {
-    const { baseElement } = renderWithIntl(<ItunesCard itune={itune} handleOnActionClick={handleOnActionClick} />);
+    const { baseElement } = renderWithIntl(
+      <BrowserItunesCard itune={itune} handleOnActionClick={handleOnActionClick} />
+    );
     expect(baseElement).toMatchSnapshot();
   });
 
   it('should contain 1 ItunesCard component', () => {
-    const { getAllByTestId } = renderWithIntl(<ItunesCard itune={itune} handleOnActionClick={handleOnActionClick} />);
+    const { getAllByTestId } = renderWithIntl(
+      <BrowserItunesCard itune={itune} handleOnActionClick={handleOnActionClick} />
+    );
     expect(getAllByTestId('itune-card').length).toBe(1);
   });
 
   it('should check if the song details are rendered inside the card and progress bar should be in the card', () => {
-    const { getByTestId } = renderWithIntl(<ItunesCard itune={itune} handleOnActionClick={handleOnActionClick} />);
+    const { getByTestId } = renderWithIntl(
+      <BrowserItunesCard itune={itune} handleOnActionClick={handleOnActionClick} />
+    );
 
     expect(getByTestId('itune-card')).toHaveTextContent(itune.trackName);
     expect(getByTestId('artist-name')).toHaveTextContent(itune.artistName);
@@ -43,7 +63,9 @@ describe('<ItunesCard />', () => {
   });
 
   it('should not render the song details if the values in itune track object is empty', () => {
-    const { queryByTestId } = renderWithIntl(<ItunesCard itune={ituneEmp} handleOnActionClick={handleOnActionClick} />);
+    const { queryByTestId } = renderWithIntl(
+      <BrowserItunesCard itune={ituneEmp} handleOnActionClick={handleOnActionClick} />
+    );
 
     expect(queryByTestId('artist-name')).not.toBeInTheDocument();
     expect(queryByTestId('collection-price')).not.toBeInTheDocument();
@@ -58,7 +80,9 @@ describe('<ItunesCard />', () => {
     const playSpy = jest.spyOn(window.HTMLMediaElement.prototype, 'play').mockImplementation(() => {});
     const pauseSpy = jest.spyOn(window.HTMLMediaElement.prototype, 'pause').mockImplementation(() => {});
 
-    const { getByTestId } = renderWithIntl(<ItunesCard itune={itune} handleOnActionClick={handleOnActionClick} />);
+    const { getByTestId } = renderWithIntl(
+      <BrowserItunesCard itune={itune} handleOnActionClick={handleOnActionClick} />
+    );
 
     fireEvent.click(getByTestId('play-event'));
     expect(playSpy).toHaveBeenCalledTimes(1);
@@ -77,7 +101,9 @@ describe('<ItunesCard />', () => {
     const currentTime = 4.0;
     const duration = 30.0;
     const percent = (currentTime / duration) * 100;
-    const { getByTestId } = renderWithIntl(<ItunesCard itune={itune} handleOnActionClick={handleOnActionClick} />);
+    const { getByTestId } = renderWithIntl(
+      <BrowserItunesCard itune={itune} handleOnActionClick={handleOnActionClick} />
+    );
 
     fireEvent.click(getByTestId('play-event'));
 

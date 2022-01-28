@@ -1,6 +1,8 @@
 import { initialState } from '../reducer';
 
 import makeSelectItunesContainer, {
+  selectItuneDetail,
+  selectItuneDetailError,
   selectItuneName,
   selectItunesContainerDomain,
   selectItunesData,
@@ -8,21 +10,24 @@ import makeSelectItunesContainer, {
 } from '../selectors';
 
 describe('ItunesContainer selector tests', () => {
-  let mockedState;
-  let ituneName;
-  let itunesData;
-  let itunesError;
+  let mockedState, ituneName, itunesData, itunesError, id, ituneDetail, ituneDetailError;
 
   beforeEach(() => {
     ituneName = 'test';
     itunesError = 'Something is wrong';
     itunesData = { resultCount: 1, results: [{ ituneName }] };
+    id = 1544494392;
+    ituneDetail = { ituneName };
+    ituneDetailError = 'Someting is wrong';
 
     mockedState = {
       itunesContainer: {
         ituneName,
         itunesData,
-        itunesError
+        itunesError,
+        id,
+        ituneDetail,
+        ituneDetailError
       }
     };
   });
@@ -45,6 +50,16 @@ describe('ItunesContainer selector tests', () => {
   it('should select the itunesError', () => {
     const itunesSelector = selectItunesError();
     expect(itunesSelector(mockedState)).toEqual(itunesError);
+  });
+
+  it('should select the ituneDetail', () => {
+    const itunesSelector = selectItuneDetail();
+    expect(itunesSelector(mockedState)).toEqual(ituneDetail);
+  });
+
+  it('should select the itunesError', () => {
+    const itunesSelector = selectItuneDetailError();
+    expect(itunesSelector(mockedState)).toEqual(ituneDetailError);
   });
 
   it('should select the global state', () => {

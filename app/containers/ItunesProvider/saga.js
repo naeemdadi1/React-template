@@ -1,10 +1,11 @@
-import { getItunes } from '@services/ituneApi';
-import { getItunesDetail } from '@services/ituneDetailApi';
+import { getItunes, getItunesDetail } from '@services/ituneApi';
 import { takeLatest, call, put } from 'redux-saga/effects';
 import { itunesContainerCreators, itunesContainerTypes } from './reducer';
 // Individual exports for testing
-const { REQUEST_GET_ITUNES_DATA } = itunesContainerTypes;
-const { successGetItunesData, failureGetItunesData } = itunesContainerCreators;
+const { REQUEST_GET_ITUNES_DATA, REQUEST_GET_ITUNE } = itunesContainerTypes;
+const { successGetItunesData, failureGetItunesData, successGetItuneDetail, failureGetItuneDetail } =
+  itunesContainerCreators;
+
 export function* getItunesData(action) {
   const res = yield call(getItunes, action.ituneName);
   const { data, ok } = res;
@@ -15,10 +16,8 @@ export function* getItunesData(action) {
   }
 }
 
-const { successGetItuneDetail, failureGetItuneDetail } = itunesContainerCreators;
-
 //For ItuneDetail
-export function* getItuneDetailData(action) {
+export function* getItune(action) {
   const res = yield call(getItunesDetail, action.id);
   const { data, ok } = res;
   if (ok) {
@@ -30,4 +29,5 @@ export function* getItuneDetailData(action) {
 
 export default function* itunesContainerSaga() {
   yield takeLatest(REQUEST_GET_ITUNES_DATA, getItunesData);
+  yield takeLatest(REQUEST_GET_ITUNE, getItune);
 }

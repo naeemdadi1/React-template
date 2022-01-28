@@ -1,5 +1,5 @@
 export default {
-  repos: {
+  itune: {
     route: '/',
     props: {
       maxwidth: 500,
@@ -8,7 +8,6 @@ export default {
     exact: true
   },
   ituneDetail: {
-    route: '/track/:id',
-    exact: true
+    route: '/track/:id'
   }
 };
