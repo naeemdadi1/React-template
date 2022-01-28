@@ -10,8 +10,6 @@ import If from '@components/If';
 import { colors } from '@app/themes';
 import { Link } from 'react-router-dom';
 
-// const { Link } = Anchor;
-
 const CustomCard = styled(Card)`
   && {
     max-width: 22rem;
@@ -99,7 +97,6 @@ const ItunesCard = ({ itune, handleOnActionClick, intl }) => {
 
   return (
     <CustomCard
-      // onClick={() => trackId && history.push(`/track/${trackId}`)}
       extra={<Link to={`/track/${trackId}`}>More</Link>}
       data-testid="itune-card"
       hoverable
