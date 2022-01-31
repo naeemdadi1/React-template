@@ -8,7 +8,7 @@ import { connectRouter } from 'connected-react-router';
 import history from 'utils/history';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import homeContainerReducer from 'containers/HomeContainer/reducer';
-import itunesContainerReducer from './containers/ItunesContainer/reducer';
+import itunesContainerReducer from './containers/ItunesProvider/reducer';
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers

@@ -8,6 +8,8 @@ import { LinkOutlined, UserOutlined, AudioOutlined, PauseCircleFilled, PlayCircl
 import { T } from '@components/T';
 import If from '@components/If';
 import { colors } from '@app/themes';
+import { Link } from 'react-router-dom';
+import routeConstants from '@app/utils/routeConstants';
 
 const CustomCard = styled(Card)`
   && {
@@ -62,7 +64,8 @@ const ItunesCard = ({ itune, handleOnActionClick, intl }) => {
     artistName,
     previewUrl,
     country,
-    currency
+    currency,
+    trackId
   } = itune;
 
   useEffect(() => {
@@ -95,6 +98,7 @@ const ItunesCard = ({ itune, handleOnActionClick, intl }) => {
 
   return (
     <CustomCard
+      extra={<Link to={routeConstants.ituneDetails.route.replace(':id', trackId)}>More</Link>}
       data-testid="itune-card"
       hoverable
       title={trackName}
@@ -178,6 +182,7 @@ ItunesCard.propTypes = {
     trackPrice: PropTypes.number.isRequired,
     country: PropTypes.string.isRequired,
     currency: PropTypes.string.isRequired,
+    trackId: PropTypes.number.isRequired,
     length: PropTypes.number
   }).isRequired,
   intl: PropTypes.object

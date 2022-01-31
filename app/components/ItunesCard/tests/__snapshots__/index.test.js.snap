@@ -18,6 +18,15 @@ exports[`<ItunesCard /> should render and match the snapshot 1`] = `
           >
             Doin' What She Likes
           </div>
+          <div
+            class="ant-card-extra"
+          >
+            <a
+              href="/tracks/1445317372"
+            >
+              More
+            </a>
+          </div>
         </div>
       </div>
       <div

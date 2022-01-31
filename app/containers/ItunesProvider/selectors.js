@@ -19,4 +19,10 @@ export const selectItunesError = () =>
 export const selectItuneName = () =>
   createSelector(selectItunesContainerDomain, (substate) => get(substate, 'ituneName'));
 
+export const selectItuneDetail = () =>
+  createSelector(selectItunesContainerDomain, (substate) => get(substate, 'ituneDetail'));
+
+export const selectItuneDetailError = () =>
+  createSelector(selectItunesContainerDomain, (substate) => get(substate, 'ituneDetailError'));
+
 export default makeSelectItunesContainer;

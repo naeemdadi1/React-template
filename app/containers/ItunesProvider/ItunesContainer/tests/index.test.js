@@ -9,7 +9,7 @@ import React from 'react';
 import { renderProvider, timeout } from '@utils/testUtils';
 import { fireEvent } from '@testing-library/dom';
 import { ItunesContainerTest as ItunesContainer, mapDispatchToProps } from '../index';
-import { itunesContainerTypes } from '../reducer';
+import { itunesContainerTypes } from '../../reducer';
 import { mockedItuneData, mockedItunesData, resultCount } from './mockData';
 import { translate } from '@components/IntlGlobalProvider/index';
 
