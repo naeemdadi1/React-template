@@ -1,9 +1,9 @@
 name: Continuous Deployement setup
 on:
-  pull_request:
   push:
     branches:
       - master
+      - feat/ci-cd
 jobs:
   build-and-deploy-s3:
     name: Deploy
