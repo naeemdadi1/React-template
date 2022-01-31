@@ -9,6 +9,7 @@ import { T } from '@components/T';
 import If from '@components/If';
 import { colors } from '@app/themes';
 import { Link } from 'react-router-dom';
+import routeConstants from '@app/utils/routeConstants';
 
 const CustomCard = styled(Card)`
   && {
@@ -97,7 +98,7 @@ const ItunesCard = ({ itune, handleOnActionClick, intl }) => {
 
   return (
     <CustomCard
-      extra={<Link to={`/track/${trackId}`}>More</Link>}
+      extra={<Link to={routeConstants.ituneDetails.route.replace(':id', trackId)}>More</Link>}
       data-testid="itune-card"
       hoverable
       title={trackName}

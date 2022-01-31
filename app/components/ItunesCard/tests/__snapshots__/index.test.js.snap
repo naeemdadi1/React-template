@@ -22,7 +22,7 @@ exports[`<ItunesCard /> should render and match the snapshot 1`] = `
             class="ant-card-extra"
           >
             <a
-              href="/track/undefined"
+              href="/tracks/1445317372"
             >
               More
             </a>

@@ -21,7 +21,8 @@ export function* getItune(action) {
   const res = yield call(getItunesDetail, action.id);
   const { data, ok } = res;
   if (ok) {
-    yield put(successGetItuneDetail(data));
+    const updatedData = data.results[0];
+    yield put(successGetItuneDetail(updatedData));
   } else {
     yield put(failureGetItuneDetail(data));
   }

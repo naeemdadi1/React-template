@@ -7,7 +7,7 @@ export default {
     },
     exact: true
   },
-  ituneDetail: {
-    route: '/track/:id'
+  ituneDetails: {
+    route: '/tracks/:id'
   }
 };

@@ -78,10 +78,11 @@ describe('ItunesContainer saga tests', () => {
       resultCount: 1,
       results: [{ artistId: id }]
     };
+    const updatedData = itunesResponse.results[0];
     expect(getItuneDetailGenerator.next(apiResponseGenerator(true, itunesResponse)).value).toEqual(
       put({
         type: itunesContainerTypes.SUCCESS_GET_ITUNE_DETAIL,
-        ituneDetail: itunesResponse
+        ituneDetail: updatedData
       })
     );
   });
