@@ -1,4 +1,5 @@
-import { baseUrl } from '../history';
+// import { baseUrl } from '../history';
+import history from '../history';
 
 describe('Tests for baseUrl method in history', () => {
   const OLD_ENV = process.env;
@@ -10,12 +11,12 @@ describe('Tests for baseUrl method in history', () => {
   afterAll(() => {
     process.env = OLD_ENV;
   });
-  it('should the path /react-template in production', () => {
+  it('should the path / in production', () => {
     process.env.NODE_ENV = 'production';
-    expect(baseUrl()).toEqual('/react-template');
+    expect(history.location.pathname).toEqual('/');
   });
 
-  it('should the path /react-template in development or test mode', () => {
-    expect(baseUrl()).toEqual('/');
+  it('should the path / in development or test mode', () => {
+    expect(history.location.pathname).toEqual('/');
   });
 });
